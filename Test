@@ -1118,15 +1118,15 @@ MainFrame:GetPropertyChangedSignal("Position"):Connect(updateExtraPos)
 MainFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateExtraPos)
 task.defer(updateExtraPos)
 
-                -- ✅ Timer otomatis dari Key System
+        -- ✅ Timer otomatis dari Key System
         local timerLabel = Instance.new("TextLabel")
         timerLabel.Position = UDim2.new(0, 4, 0.5, 0)
         timerLabel.AnchorPoint = Vector2.new(0, 0.5)
-        timerLabel.Size = UDim2.new(0, 140, 0, 16)
+        timerLabel.Size = UDim2.new(0, 160, 0, 16) -- ✅ diperlebar agar muat format baru
         timerLabel.BackgroundColor3 = RX.Accent1
         timerLabel.BackgroundTransparency = 0.8
         timerLabel.BorderSizePixel = 0
-        timerLabel.Text = "0000D : 00H : 00M"
+        timerLabel.Text = "0000D : 00H : 00M : 00S" -- ✅ format baru
         timerLabel.Font = RX.FM
         timerLabel.TextSize = 8
         timerLabel.TextColor3 = RX.T2
@@ -1148,7 +1148,11 @@ task.defer(updateExtraPos)
             local days    = math.floor(totalSeconds / 86400)
             local hours   = math.floor((totalSeconds % 86400) / 3600)
             local minutes = math.floor((totalSeconds % 3600) / 60)
-            return string.format("%04dD : %02dH : %02dM", days, hours, minutes)
+            local seconds = math.floor(totalSeconds % 60) -- ✅ tambah detik
+            return string.format(
+                "%04dD : %02dH : %02dM : %02dS",
+                days, hours, minutes, seconds
+            )
         end
 
         -- ── Baca data dari Key System & jalankan timer ───────────────────
@@ -1157,7 +1161,7 @@ task.defer(updateExtraPos)
 
             -- Tidak ada key
             if not keyData then
-                timerLabel.Text      = "NO KEY"
+                timerLabel.Text       = "NO KEY"
                 timerLabel.TextColor3 = RX.Red
                 return
             end
@@ -1179,7 +1183,7 @@ task.defer(updateExtraPos)
                 return
             end
 
-            -- FREE dengan expire / DURATION → Green, countdown tiap menit
+            -- FREE dengan expire / DURATION → Green, countdown tiap detik
             if expireTimestamp then
                 local expireTime = tonumber(expireTimestamp)
 
@@ -1196,8 +1200,8 @@ task.defer(updateExtraPos)
                         end
 
                         timerLabel.Text       = formatted
-                        timerLabel.TextColor3 = RX.Green -- selalu Green selama belum expired
-                        task.wait(60) -- update setiap 1 menit
+                        timerLabel.TextColor3 = RX.Green
+                        task.wait(1) -- ✅ update setiap 1 detik
                     end
                 end)
             end
