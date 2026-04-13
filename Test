@@ -307,7 +307,7 @@ local function getSafeParent()
 
     getgenv().Flycer_SafeParent = getSafeParent()
 
-    local DRAG_SMOOTHNESS = 20
+    local DRAG_SMOOTHNESS = 17
 
     local function getDragLerpAlpha(smoothValue)
         smoothValue = math.clamp(smoothValue or DRAG_SMOOTHNESS, 1, 20)
@@ -753,7 +753,7 @@ OnComplete = function()
     Platform = { isMobile = isMobile, isPC = isPC },
 }
 
---  SECTION LABEL
+-- ── Section Label ─────────────────────────────────────────
 local function createTextLabel(nameText, layoutOrder)
     local f = Instance.new("Frame")
     f.Name = randomName()
@@ -797,7 +797,7 @@ end
 
 createTextLabel("Combat", 1)
 
---  CARD HELPER
+-- ── Card Helper ─────────────────────────────────────────
 local function makeCard(layoutOrder)
     local f = Instance.new("Frame")
     f.Name = randomName()
@@ -1072,7 +1072,7 @@ for i = 1, 10 do
     CreateTroopsRapidFireToggle(3)
 end
 
---  EXTRA FOOTER FRAME
+-- ── Extra Bottom Frame ─────────────────────────────────────────
 local ExtraFrame = Instance.new("Frame")
 ExtraFrame.Name = randomName()
 ExtraFrame.Size = UDim2.new(0, 290, 0, 24)
@@ -1118,26 +1118,26 @@ MainFrame:GetPropertyChangedSignal("Position"):Connect(updateExtraPos)
 MainFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateExtraPos)
 task.defer(updateExtraPos)
 
-        -- ✅ Timer otomatis dari Key System
+        -- ── Timer Key System Access ─────────────────────────────────────────
         local timerLabel = Instance.new("TextLabel")
         timerLabel.Position = UDim2.new(0, 4, 0.5, 0)
         timerLabel.AnchorPoint = Vector2.new(0, 0.5)
-        timerLabel.Size = UDim2.new(0, 160, 0, 16) -- ✅ diperlebar agar muat format baru
+        timerLabel.Size = UDim2.new(0, 100, 0, 16)
         timerLabel.BackgroundColor3 = RX.Accent1
         timerLabel.BackgroundTransparency = 0.8
         timerLabel.BorderSizePixel = 0
-        timerLabel.Text = "0000D : 00H : 00M : 00S" -- ✅ format baru
+        timerLabel.Text = "0000D : 00H : 00M"
         timerLabel.Font = RX.FM
-        timerLabel.TextSize = 8
+        timerLabel.TextSize = 9
         timerLabel.TextColor3 = RX.T2
         timerLabel.ZIndex = 11
         timerLabel.Parent = ExtraFrame
 
         local timerCorner = Instance.new("UICorner")
-        timerCorner.CornerRadius = UDim.new(0, 5)
+        timerCorner.CornerRadius = UDim.new(0, 6)
         timerCorner.Parent = timerLabel
 
-        -- Gold Premium Color
+        -- Premium Color
         local GOLD = Color3.fromRGB(255, 215, 0)
 
         -- ── Fungsi format waktu ──────────────────────────────────────────
@@ -1148,18 +1148,19 @@ task.defer(updateExtraPos)
             local days    = math.floor(totalSeconds / 86400)
             local hours   = math.floor((totalSeconds % 86400) / 3600)
             local minutes = math.floor((totalSeconds % 3600) / 60)
-            local seconds = math.floor(totalSeconds % 60) -- ✅ tambah detik
-            return string.format(
-                "%04dD : %02dH : %02dM : %02dS",
-                days, hours, minutes, seconds
-            )
+            return string.format("%04dD : %02dH : %02dM", days, hours, minutes)
         end
 
         -- ── Baca data dari Key System & jalankan timer ───────────────────
         local function startKeyTimer()
-            local keyData = getgenv and getgenv()._FlycerKeyData
 
-            -- Tidak ada key
+            local keyData = nil
+            for _ = 1, 10 do
+                keyData = getgenv and getgenv()._FlycerKeyData
+                if keyData then break end
+                task.wait(0.5)
+            end
+
             if not keyData then
                 timerLabel.Text       = "NO KEY"
                 timerLabel.TextColor3 = RX.Red
@@ -1169,23 +1170,26 @@ task.defer(updateExtraPos)
             local keyType         = keyData.keyType
             local expireTimestamp = keyData.expireTimestamp
 
-            -- LIFETIME → Gold, tidak ada countdown
             if keyType == "lifetime" then
                 timerLabel.Text       = "LIFETIME ACCESS"
                 timerLabel.TextColor3 = GOLD
                 return
             end
 
-            -- FREE tanpa expire → Gold, tidak ada countdown
             if keyType == "free" and not expireTimestamp then
                 timerLabel.Text       = "FREE : UNLIMITED"
                 timerLabel.TextColor3 = GOLD
                 return
             end
 
-            -- FREE dengan expire / DURATION → Green, countdown tiap detik
             if expireTimestamp then
                 local expireTime = tonumber(expireTimestamp)
+
+                if expireTime - os.time() <= 0 then
+                    timerLabel.Text       = "EXPIRED"
+                    timerLabel.TextColor3 = RX.Red
+                    return
+                end
 
                 task.spawn(function()
                     while timerLabel and timerLabel.Parent do
@@ -1193,7 +1197,6 @@ task.defer(updateExtraPos)
                         local formatted = formatTimer(remaining)
 
                         if not formatted then
-                            -- Sudah expired
                             timerLabel.Text       = "EXPIRED"
                             timerLabel.TextColor3 = RX.Red
                             break
@@ -1201,7 +1204,7 @@ task.defer(updateExtraPos)
 
                         timerLabel.Text       = formatted
                         timerLabel.TextColor3 = RX.Green
-                        task.wait(1) -- ✅ update setiap 1 detik
+                        task.wait(1)
                     end
                 end)
             end
@@ -1209,86 +1212,86 @@ task.defer(updateExtraPos)
 
         task.defer(startKeyTimer)
 
-local function createFooterButton(text, posX, baseColor, textColor)
-    local btn = Instance.new("TextButton")
-    btn.Position = UDim2.new(1, posX, 0.5, 0)
-    btn.AnchorPoint = Vector2.new(0, 0.5)
-    btn.Size = UDim2.new(0, 53, 0, 16)
-    btn.BackgroundColor3 = baseColor
-    btn.BackgroundTransparency = 0.6
-    btn.Text = text
-    btn.Font = RX.F1
-    btn.TextSize = 9
-    btn.TextColor3 = textColor
-    btn.AutoButtonColor = false
-    btn.BorderSizePixel = 0
-    btn.ZIndex = 11
-    btn.Parent = ExtraFrame
+        -- ── Discord Button ───────────────────────────────────────────────
+        local DISCORD_LINK = "discord.gg/RCASHh828K"
 
-    local btnC = Instance.new("UICorner")
-    btnC.CornerRadius = UDim.new(0, 5)
-    btnC.Parent = btn
+        local discordButton = Instance.new("TextButton")
+        discordButton.Position = UDim2.new(1, -59, 0.5, 0)
+        discordButton.AnchorPoint = Vector2.new(0, 0.5)
+        discordButton.Size = UDim2.new(0, 55, 0, 16)
+        discordButton.TextSize = 9
+        discordButton.BackgroundColor3 = RX.Accent1
+        discordButton.BackgroundTransparency = 0.6
+        discordButton.Text = "DISCORD"
+        discordButton.Font = RX.F1
+        discordButton.TextColor3 = Color3.fromRGB(180, 190, 255)
+        discordButton.AutoButtonColor = false
+        discordButton.BorderSizePixel = 0
+        discordButton.ZIndex = 11
+        discordButton.Parent = ExtraFrame
 
-    if not isMobile then
-        btn.MouseEnter:Connect(function()
-            TweenService:Create(btn, TWEEN_FAST,
-            {BackgroundTransparency = 0.35}):Play()
-        end)
-        btn.MouseLeave:Connect(function()
-            TweenService:Create(btn, TWEEN_FAST,
-            {BackgroundTransparency = 0.6}):Play()
-        end)
-    end
-    return btn
-end
+        local discordCorner = Instance.new("UICorner")
+        discordCorner.CornerRadius = UDim.new(0, 6)
+        discordCorner.Parent = discordButton
 
-local discordButton = createFooterButton(
-"DISCORD", -60, RX.Accent1, Color3.fromRGB(180, 190, 255)
-)
+        if not isMobile then
+            discordButton.MouseEnter:Connect(function()
+                TweenService:Create(discordButton, TWEEN_FAST,
+                    {BackgroundTransparency = 0.35}):Play()
+            end)
+            discordButton.MouseLeave:Connect(function()
+                TweenService:Create(discordButton, TWEEN_FAST,
+                    {BackgroundTransparency = 0.6}):Play()
+            end)
+        end
 
-local function createCopyHandler(btn, link, originalText,
-    notifTitle, notifBody, baseColor)
-    local clicking = false
-    local function handler()
-        if clicking then return end
-        clicking = true
-        pcall(function()
+        -- ── Discord Copy Handler ─────────────────────────────────────────
+        local clicking = false
+
+        local function discordHandler()
+            if clicking then return end
+            clicking = true
+
             pcall(function()
-                if setclipboard then setclipboard(link)
-                elseif toclipboard then toclipboard(link)
-                elseif Clipboard and Clipboard.set then Clipboard.set(link) end
-                end)
-                btn.Text = "COPIED"
-                TweenService:Create(btn, TweenInfo.new(0.12), {
-                BackgroundColor3 = RX.Green,
-                BackgroundTransparency = 0.3,
-                }):Play()
                 pcall(function()
-                    ShowNotification({title = notifTitle, body = notifBody, duration = 3})
+                    if setclipboard then setclipboard(DISCORD_LINK)
+                    elseif toclipboard then toclipboard(DISCORD_LINK)
+                    elseif Clipboard and Clipboard.set then Clipboard.set(DISCORD_LINK)
+                    end
                 end)
+
+                discordButton.Text = "COPIED"
+                TweenService:Create(discordButton, TweenInfo.new(0.12), {
+                    BackgroundColor3 = RX.Green,
+                    BackgroundTransparency = 0.3,
+                }):Play()
+
+                pcall(function()
+                    ShowNotification({
+                        title    = "Discord",
+                        body     = "Link undangan disalin!",
+                        duration = 3,
+                    })
+                end)
+
                 task.delay(1.5, function()
-                    btn.Text = originalText
-                    TweenService:Create(btn, TweenInfo.new(0.25), {
-                    BackgroundColor3 = baseColor,
-                    BackgroundTransparency = 0.6,
-                    }):Play()
+                    if discordButton and discordButton.Parent then
+                        discordButton.Text = "DISCORD"
+                        TweenService:Create(discordButton, TweenInfo.new(0.25), {
+                            BackgroundColor3 = RX.Accent1,
+                            BackgroundTransparency = 0.6,
+                        }):Play()
+                    end
                 end)
             end)
+
             task.delay(2, function() clicking = false end)
         end
-        btn.MouseButton1Click:Connect(handler)
-        btn.TouchTap:Connect(handler)
-    end
 
-    createCopyHandler(
-    discordButton,
-    "https://discord.gg/42rqNvwKmw",
-    "DISCORD",
-    "Discord", "Link undangan disalin!",
-    RX.Accent1
-    )
+        discordButton.MouseButton1Click:Connect(discordHandler)
+        discordButton.TouchTap:Connect(discordHandler)
 
-    --  TOGGLE BUTTON
+    -- ── Hide / Open GUI ─────────────────────────────────────────
     local mainVisible = true
     local isAnimating = false
 
@@ -1417,7 +1420,7 @@ local function createCopyHandler(btn, link, originalText,
 
     local ToggleText = Instance.new("TextLabel")
     ToggleText.Size = UDim2.new(1, -48, 1, 0)
-    ToggleText.Position = UDim2.new(0, 44, 0, 0)
+    ToggleText.Position = UDim2.new(0, 48, 0, 0)
     ToggleText.BackgroundTransparency = 1
     ToggleText.Text = "HIDE"
     ToggleText.TextColor3 = RX.T1
