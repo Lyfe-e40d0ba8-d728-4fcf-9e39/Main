@@ -1,3 +1,2144 @@
---// This file was created by XHider v1.2 [https://discord.gg/hATuHQaQRb]
+local ProximityPromptService = game:GetService("ProximityPromptService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local TextService = game:GetService("TextService")
+local Workspace = game:GetService("Workspace")
+local VirtualUser = game:GetService("VirtualUser")
+local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
 
-([[This file was protected with Xhider Obfuscator]]):gsub(".+",function(M)_MQgpBVb=M end)return(function()local Y,p do local M=math.floor local X=string.char local F=string.byte local function G(X,F)local G=0x0 for c=0x0,0x7,0x1 do local h=X/0x2+F/0x2 if h~=M(h)then G=G+0x2^c end X=M(X/0x2)F=M(F/0x2)end return G end local c={0xBF;0x36;0x1B,0x8}local function h(X,G)local c={}local h=0x1 local N=#X while h<=N do local G=0x0 local e=0x5 if h+0x4>N then e=(N-h)+0x1 for M=0x1,e,0x1 do G=G*0x55+(F(X,(h+M)-0x1)-0x21)end for M=e+0x1,0x5,0x1 do G=G*0x55+0x54 end else for M=0x0,0x4,0x1 do G=G*0x55+(F(X,h+M)-0x21)end end local C=M(G/0x1000000)%0x100 local a=M(G/0x10000)%0x100 local s=M(G/0x100)%0x100 local j=G%0x100 c[#c+0x1]=C c[#c+0x1]=a c[#c+0x1]=s c[#c+0x1]=j h=h+(e==0x5 and 0x5 or e)end for M=0x1,G,0x1 do c[#c]=nil end return c end local N=([=[XHD:OZ"-alX"UYT29Q=g(nL=bSFu?cpE1sb>Wm=aBrjnT5J^YgJ_f7n5OgabZ/t:cpYH')[P,#FD&ktF;kLq2B)t;2Fn"dgD:.?4r`+a2Ppu!N=cGE2B)q:2B)\32B*:D2B*gS2B+!X2B,<(2B,0$2B,`42B-SL2B.(Z2B.Ie2B.@b2B.jp2B/j72B0<D2B0oU2B0]O2B1Pg2B2,"2B1_l2B22$2B2A)2B*RK2B+0\2B*dQ2B+fn2B+Nf2B,#t2B,o82B-GG2B.%X2B.^k2B/$t2B.mp2B/F*2B/m72B0iR2B0]N2B12\2B1em2B2/"2B*.>2B)n72B*7A2B*FF2B+0[2B*dP2B+fm2B+Qf2B,<&2B+op2B,Z02B-&;2B.%W2B-YL2B-hQ2B/*u2B.pp2B/F)2B/m62B0KG2B1A`2B1Pe2B2(t2B2J*2B2Y/2B*OH2B*=B2B,,u2B,]02B.%V2B-kQ2B.7\2B.Fa2B/1!2B.dk2B.sp2B/I)2B0BC2B0-<2B0lQ2B0KF2B1A_2B1nn2B1Yg2B*(:2B*UI2B+'V2B+`i2B+Kb2B,6"2B,&r2B-nQ2B.(V2B-\K2B-kP2B.C_2B.jl2B/U,2B/j32B/I(2B0fN2B0ZJ2B15Z2B1to2B1Sd2B2G'2B*%82B*XI2B*7>2B*FC2B+fj2B+E_2B,l32B-DB2B-SG2B-VH2B.Ud2B/*r2B/[-2B0BA2B0NE2B15Y2B1hj2B2S*2B)\-2B*4<2B*CA2B*sQ2B+H_2B,)q2B,W+2B-)82B.%S2B-YH2B0<>2B/p32B0*82B0HB2B1hi2B+<Z2B+ii2B,8u2B,f/2B,Z+2B-)72B-_I2B.L_2B.:Y2B/$n2B.sl2B/^,2B0<=2B0cJ2B0rO2B0QD2B1,T2B1Vb2B21r2B)_,2B*@>2B+<Y2B*pN2B+Zc2B+ih2B+H]2B,2r2B,B"2B+ul2B-#42B,W)2B-A>2B-)62B..T2B.I]2B.:X2B/0q2B.pj2B/a,2B0lL2B1Yb2B)h.2B*=<2B*dI2B+H\2B+rj2B,o02B,Z)2B-PB2B-/72B-nL2B.I\2B.4U2B.F[2B->82VB3Pmq#ZLSo>"N2ICk.;(-04ZZ$8d2N3#Gh^tFZ\_RS,H#O/+2IMV2FPR8<VHCPPo\Bhgd$@dDSk9@\Ul9g,/hQK,a)DI%2FIkd2H\gWpLVE;Tl:=Q2IDi`(F\.*k&:dE2N3+,Sh3L^%,D6)\Sqqk2II"+Dqt`7\QIimXPF2tR[2%_Db<Fl*K8DY74h>l!,r@]2FIne2HY(_3+Xd&cYs3*2IFT>4X^I'VJm$[2N7?Kbq1RJ+l*I>"E4a`2IH`0BAEm/b?1L-*o..;%[L?Lj[tmX?]9U:Be9ZMUi6aW2FIqf2HU0[[UhFr.:*Cs2K02A2JhA)HAp;=nLY5W]5S1n2FItg2HX:]Jn;e6CFY@dHuK)#2EslK@+RH,-?'"#2F#ts.+dsRqJZMN2EtAX\_"(NAT.ad2F"DXACkE,/oUs.2EsI6&_E`n2/i`62Es/+T@[PYUMpFP2F#:@in&q4e8PZ-2EqHL0A!Fq?#UXq2F$Jl$J2q8CN(0+2F$9-n(1qMG)T='M_.!^X`+]`2FJ"h2H[c>c=P?LXt!Jbi,BUL2K0VM2V6r1#&kQs2K0\O2V2QRY&GGs2K0)>2V4`il>Ri[2K05B2V4Zk#)n@i==qVln8JfN2FJ%i2H[o,_e"kiHuK\42IC8)@;ljo2JfJfa(8lZ\Sr4s2N5#UM_3R$*0p`20M2Prb`&PV&M;("Y&Ffa2FJ(j2H]lh**s/j2K0AF2K0DG2V2JkRpHW?2K0GH2Er71J_0NQUL"JG2K0JI2K1(Z2IB@*4)c"N2JeuG<,a;$2JdPnB%J#Ao5G#N2IAd1gaLakk\r#d2N5qjD_5#eVqhZo-ZBI.2IL?rVqhZoI9:65.GY<FH^54UT/dPJ.k%u[HAn:s0.lmNlJ2c]Zu@P12IPkeA).I++^"S&Q/)b]+dP(o"?DM%9L$DbpVNe>4cX-]LoT.C2Am8@oj/0D2fL=_2K/u;2IH<:*[kQ)"E5s-2N/VYa=X9>`8(a7K5_452II"<[bV8)``R&YW8.cpo9No6l8e8mYLid.k.8j6*VJa52Aoh6K3f)'2fL=_2I6g,2^hc^mVjen2N6))Xt>aqM;8KQM/Y,_2IMcK,M`[@6<K0t38FnUhNleNB/tbd#1pemhn"';ojpO8(2sl#2IDJ@CN'p$2JbKc>@mA=eSlYG2N5#gV(M<Uop3tA<D$6OI>eq-nL_D^(N9et2FIP[2HW'l\6]0M2K0AF2K0hS2V/c_n6Q+02K0kT2K0nU2IF%U4E(qJ2Ja6'B4[Gt2/jhU2K0tW2K0qV2K1"X2N3a@%4r'j17%ig5rnSsYLdl2RU-!/2K1%Y2K0nU2IGOW7rT*U2Jg7+raeQ=bA]GU2K1[k2K1Xj2K1^l2N1bQs"0%%^6XBIff:0'B\/u1(g[3W2K1am2K1dn2IA!Nc>Yq]2Jfte.qRk>ol*+02K1jp2K1mq2N/nR%P<Y,^QqXjRlT,5_:OKS[9`jJ2K1@b2K0qV2V4J6BjLeS2K14^2I6p/2V6YB>@%<E2K1Cc2PRu9.G%m[b$G(_2K1Fd2PPrYmFPr1]k*WWhJa(A2IBqGQZ*SP2Ji@&/7lJr/9!D[2N5A@DCoo(j-H:Z/kX'q$B0p\#q]8oC2aTr2FIS\2HYo^=^D-D2K1Lf2K1Og2IC8sg2I\>2JaA^H=b0E`Gd*;2K1Rh2N/3hMCk^/;3jg2J2sQWZ.JL3Y?h7E2K14^2I6Bu2V2>i!bJSlTPtLX2IG7)-#aL32J`L%Eb3TaqJ\C.2N7&Uk:K<X,*mnkf1O%md#8;GRP!%FQ#I/H2FIV]2H]+\A6o>P2K0AF2K24%2V4*&BjLkU2K0kT2K0nU2I?NfbA\*/2Je[S#A*I7o5G,Q2K1mq2K0)>2K1mq2N/?@p+=Q:b*IS2lT)0ss4=RO>$_9F2K1%Y2K0nU2IFamKl@[>2JfCH>@hma+E/U@2K27&2K0qV2K27&2N2>*;CuS&-^OI6gc=YqgXhAfK3eVo2K2:'2K0)>2V5Y[Tj@f82K2=(2K2@)2V5S\i*HK"2K2C*2K1dn2IFC&+`KTZ2Jaie8nFgcR;aFd2K0qV2K0qV2N6R;1+dBJ^6Zp^V)eIjT\%7!,@1Gd2K2F+2K1Xj2V0LhW*TP?2K2I,2K0qV2V2K9iEcT#2K14^2I6Bu2V/:b_I[tr\Sr.q2IFQ$2/j2C2Jfb.,@qEC5B%a[2N0UKTIi(c#+!-6]1Ot?8rQB+F=lJd\o8(m2FIY^2HVdG(1%*X2K0AF2K1pr2V1Kfk?\8*2K0kT2K0nU2IGTAWGiKb2JcVX*G%j105q?72K0qV2K0qV2K1ss2N5A):G%TJG*Z*f"?Dj\Vq29'93q_82K1am2K1dn2IC:G:N/J32Jaf5mq$8%8T7#22K2$u2K2(!2N0n;mk*JH%$hb(0faD(D:`e\;I0I?2K1@b2K0qV2V3'?^0UoV2K14^2I6Bu2V6GFXCXGO?Z6Ul2IAl1;/d/_2JeaLUh,GGGAo@Q2N1ffP:]D#rg&kU7S6@/2iKM"IP$j9dVoW02FI\_2HV*G5[FT.2K1Lf2K1Og2IE9>@rN'q2Jh1*a(9Qk^i1R62K1Rh2N4lG"YGJEa-M>'6ogj\#1q?d10t*u2K14^2I6L#2V/F"-tQM=!cSad2IEVG:iI&^2Jb@4A7^4(pM_7i2N4dRF"ISg<0gjQ?:ofccA\-=bq8G_iG]4?2FI_`2H]mog0Ort2K0kT2K0nU2IAZ"D/^-&2JeO'Eb/o?fPh862K0qV2K0qV2K1Rh2N5$%at:8Tes=fu^GuYW:=iq_em8Np2K1%Y2K0nU2ID!)CiC$%2Ji/K$tX<[pM_Cm2K0qV2K0)>2K27&2N5!m?S-G2YEfG]c8jDKak(]*hd-K$2K1am2K1dn2IE-<)fRsT2Jg$%De4%5<H(:>2K2$u2K2(!2N3GSnL\G.n<QbV@6#lWqU^nUpKe$<2K1@b2K0qV2V1@K"'u/G2K14^2I6L#2V2QZ?tFAP+E.q-2IE<tMf9<D2Jc\o4(WeRqf#!=2N7Df3\@"2FdBQ6dRkY^Vi7p$c7OK:X)JK^2FIba2H\>3!+#lE2K0AF2K2.#2V6ApNa;q)2K0kT2K0nU2IFt_j)>XG2Ja6"Y[rQIf5O6p2K0qV2K0qV2K2d52N21H)_DVm(7''i\iJtgHe1e/qHaB@2K1%Y2K0nU2I?aIEGuQ*2JgGW2e=K#'6#532K1jp2K0qV2K2g62N1=@""iS$M3d:PX?#>`LtCd7#@7VL2K2:'2K0)>2V7LsQsL!32K2j72K1(Z2I@kdO`4L=2Jal#05t.12Jb.JNRo#(FC#0d2K2p92K2s:2V3=Jhd-N%2K3!;2K1dn2IH519lN812Jf7HS7UnlWGk8?2K2(!2K2(!2N/1c4"\=MNL!Bf_)^)18(TL`n6Q=62K3$<2K1jp2V2L2+C58e2K2L-2K1(Z2IFJ9RW)*<2Jbcr/T=S%2JaA"ZIds@NEuh(2K14^2I6L#2V0.J;.Vf9\o87r2IGD+pi$k\2JcX:dUaChY]*%G2N1U4ROnfp$C5dgX\,g*`f+a#=Y6?L4)bVC2FIeb2HV(^.UE@p2K0kT2K0nU2IF=_8oPEX2Jf&>Z"6P,;K,.@2K0qV2K0qV2K1jp2N2T"k:MAXbEbU<KK1.a.+ct:c<^aj2K1%Y2K0nU2IEn:hJa+B2JbX8Rq9miHuL@G2K1jp2K0qV2K2R/2N/,]eLe9ZQBjk#ni;AgES'umi*HZ'2K2:'2K0)>2V1.9C0h.[2K2j72K1(Z2IFf@0Q:412JiB$:N07I2Jgli^"9.EKO+nu2K2p92K2X12V1(8,[L_j2K3!;2K1dn2ID?*QZ,+&2Jc41AS(M/M/ZJ02K2^32K2(!2N2mG^Fcbfm?TG]i&R0`a4G-X(L@?]2K3$<2K2a42V1";#@7YM2K2L-2K1(Z2IDtZ7;u)<2JcDS7W;5>2Jf6G@b6F>mp6762K14^2I6L#2V6U"FCj[['lXc"2IF,jKQ%R=2Jc,[4_9^%Nc8[H2N0%_<%XcSkE\*M9hOW`f8QF:!\K4Beo2&42FJCs2H\rA7p[%I2K0AF2K3BF2V7<WIpNu,2K0kT2K0nU2IDmnGAn202Jhq3iak0$ZZ%2)2K2d52K0qV2K2d52N03$5qRQF@$[,C#s$<,_q/Kf-=.P(2K1%Y2K0nU2ICJ2VJm0_2JfgEMIh)[W,N0[2K3EG2K0qV2K1Rh2N6@jY:W4&'UE:>2`VB;T\$]`iEdA92K1am2K1dn2IA!jo5Hk-2Je&#Uh*L6:iJh;2K1ss2K1ss2N4;=k:O"#JX4M33B::&eCUkb=C)iZ2K2j72K1(Z2IB9B=`@QZ2Je9J+)kH!2Jh77QIjV2N*[@92K2p92K3HH2V5fdl<Y=B2K3!;2K1dn2IH(g)/qaR2Jh7#,A"Z8no."32K2(!2K2(!2N2B&@P'bbGEtWKI5rQ]'\<\D.UEt,2K3$<2K3KI2V7d+(1%im2K14^2I6L#2V0WH$tU=`4)beH2I?SiVJm0_2JgOIQ=Z`Uo5HM#2N6:o+"_*.h3Rc[NCol*HAqQIkUi)\Kl@I82FJFt2H\1N$=4Ub2K1Lf2K1Og2IBXrg2I\>2Je2D<+V6VpM_Cm2K2g62N7:`+>(IEA<r2;Ai]3OhUbr^B3lIj2K14^2I7682V0Y]$sjdc2K3NJ2JdE(`$g;hG2EYA2N160W@c'6[+u&'=)`&l2IOCsnD+Dc4'2R@^>0+1H^6Qjb`/D.^LbjbjDY^G2IB_h!,rRc2Jbk=j^f3VG]7?22N4);Ub1`1m?Z\5f1KHD8;q#9o.A&$4`ChE2FJIu2HUr&CL.po2K0AF2K3TL2V7FC"'un\2K0kT2K0nU2IB-Ma`%m-2Jf7/Wb'%i.W?ZJ2K2d52K0qV2K2d52N2D5%kV13'p_HC83-#m2qMH>.pa./2K1%Y2K0nU2IDK4>]:=j2Jf8Df4?T.U2UOU2K3'=2K0qV2K1Rh2N6cR5V9]/Z'N<Q]f@u.K@^GJG$Z*%2K1am2K1dn2ICFWfPj!g2Jaen$>%;n6?!mY2K3*>2K2(!2N6(-?nK#&%[Pf^Fu^[T1=tBV-XI_+2K2j72K1(Z2IEc(PAj^?2Jg%O.r\_-2Jg`fpt'Qc10tm62K2p92K3-?2V1XUra$MX2K3!;2K1dn2IB'OC2c>N2JaefRq7$dm;PJ.2K2(!2K2(!2N2s2F"N^N:6mqG%lpX8A(SY2Na<X=2K3$<2K3KI2V4C7gKkf52K14^2I6L#2V0/OEb4`A<,`Ga2IB"hLi=!A2Jebm<b2L*>AuC52N4T;;Cs*O,F5pBa%F.bjc&,U[4P-hf5M/52FJM!2H[>^O^9!A2K1Lf2K1Og2I@d?gi*n@2JbW4"(fP/+E/U@2K2g62N/VMbUrH76^C[sj>ei^cI^c![9afe2K14^2I7<:2V6_0U1ND&?pAtgpPbpEnL[MPbA[m)2FJP"2H]=M$=4Xc2K3NJ2J`_<>UU)L&Dml12N5j0B.[.>9&0fg:2k*c2IN%5QJDk^hH6Qo\_RS,^6X]pkDbYbIV$IMIrH"72I@@7[r;tp2Jg$phdt)47W;kP2N7@f*%f>-/!`4JA4dF&<fBN/W%H`AODkWC2FJS#2H]0uR9goK2K0AF2K33A2V238.UF.12K0kT2K0nU2IEnD5B%7M2Jbcq*G$W-mViTL2K36B2K0)>2K39C2N.h?kq-44m$<UWFZJ_+OOoZ:&7-Bl2K1%Y2K0nU2I@U%(2so$2J`r">@imCC2bH52K2g62K0qV2K2!t2N/2m<%UQKop5#o,rnT3RFc&gHsRi.2K2:'2K0)>2V6kDBO2^o2K1@b2K0qV2V/^]'4)]o2K3<D2K3oU2V2^7=^E,`2K3rV2K1dn2IAoWqf"^52Jae3NFb(b<H(:>2K2$u2K2(!2N.Wuj=M^\QBj/,dQ,[D"4tCeDdFI!2K3uW2K0nU2IApn7rT*U2JbPudUa,<"`Pa%2K0qV2K0qV2K4#X2N5jRCG!-_Ng>FP.lg;gFOu]?!+$\\2K14^2I6Bu2V08c+(]Cq$#gKk2IGgD?uQan2JdCR1M'mRp2GDo2N0ocdk0G>ig(2`.S>;T:Q/Nsr@LXiVf3'Z2FJV$2H[["0O>g82K4)Z2K1Og2IH5MWc/Tc2Ji*5O_'9e6?"3b2K2g62N/]5!\JG4LR,N(Ou[,_N7X$8G?u?*2K4,[2K1(Z2IG%?3H0G^2JgkF9Q5Kr2JhSLk1AH8em9E42K14^2I7E=2V4293o:@\2J=2I2W"tY2J<Z:2J)IW&7,p_2J"LBl>U^W2I7E=2N2+c<\<f'jd(MfE(\%ji/B9ri@PPNq/?bW2FJ.l2HUNJ4(YEsA6oh^2J%>!fl1rG2I7E=2N3e.M(Lhdes=*8mRgSsIuIW$?7gW6\Sqtl2FJ1m2HZ1Ug1<6?Y[.mU2J&+YeSoQD2I7E=2N3M&)D/tPS<ak6c:Y%>VMt4WZRnZ=4`ChE2FJ4n2H[!>em9H52J#]dT5XeF2K3`P2K1dn2IDal$ZJ8D2Jc96ok!!U<cB>!2K3cQ2K2(!2N3N(==k.?Z^,o%of6@@a^,Ro2K0qV2N4;Uc7M0H6C)FiD2geWia*_A2J!rTQuE)@2K3fR2K1dn2IF,`1iPUm2Jc"*b[k*LHZ2Bf2K3cQ2K0qV2N7)$Ah@OLWKppq\2gi$X^2US2K0qV2N7W#SLm%S=dF$\^PsSWNa<gB2J)"kgi++F2K3iS2K1dn2IH;\-u_>a2JcER9kEg%-#b-E2K2(!2K3lT2N0K9Yq:J6BU2,bD)q#diEd,22K0qV2N/39l7M/@bEg;3</j5ijB`qC2J%cFA8iF$2K4Je2K1dn2I@$gWGk#82JdOL\7H-c1N6@/2K0VM2K2(!2N0Np""aTL+dRjro/Ut0nm2pC2K0qV2N6ja'eR@hBpMAaV2^^qY[/Ed2J'6..<#@'2K/`42K1dn2ICcs")pE<2Jb/9]k,V7I;hTh2K1ss2K1ss2N7J^#q['1HBqf3I5s7qP$Sd92K0qV2N2+<aXtMj)4&>c.ZGQTBO2dq2J(Ue"E4R[2K4Mf2K1dn2IG*=LN#Dk2JhN$(hLWJqf"s<2K2$u2K0qV2N4YXV(FsR4dM=g[lM*pQsLE?2K0qV2N/7M__$1_TU*I#=,liAO'WpC2J"cp,B*n&2K4Pg2K1dn2ID+o(2uFO2JgY]^L]Y@pM`O82K2[22K0qV2N6p#4Y>rgd$?45f/_,RZ<e0Y2K0qV2N3fXCb<e]#*uQoeVtjA-XIn02J(/cQZ*&A2K/c52K1dn2ID&TY])b?2JfsfY@XrnjD]=X2K0VM2K2(!2N3@kfI`\[]9[c*Fu^fS"C;_U2K0qV2N6k6Qn;L38s[!S^5^R3g0Pl92J%9l$?--_2K4Sh2K1dn2IAH%%WFSG2Jd9Z5\6CPgMhAO2K2(!2K0qV2N5LV+t]I:4dOFpe2b2#eQrp(2K0qV2N07[O=`:Y2O9_-Xc4s$<*gZ]2J&+ToPauK2K4Vi2K1dn2ICiqi,Cio2Jd3/+(\^EQuI/^2K0VM2K2(!2N.ncSLs&NPa5jo+#uHe&7-$b2K0qV2N7M(qCNK9aHd%J@uX/gHtCaZ2/j/B2IFC*gi*n@2Ji;7.qO_G;/dYm2N7&PTIlTbGEs)!fh-jPlAPpCoIVWGj_tXC2FJ7o2HZnb,$ktu2K0AF2K4Yj2V2cP0jYR/2K0kT2K0nU2I@Aig2I\>2Jb-#-tP$e"`Omb2K36B2K0qV2K2d52N55uq^ld$6C+3CO?$iG7b<e9p0JHJ2K1%Y2K0nU2IDhd'lXf#2J`^6a(::c)/pk92K2g62K0)>2K4\k2N5GPfI_?/GEtXJ/NMJ@6J$N.F^>cs2K1am2K1dn2IGr"#]MrA2JcKc,%]g>dr7Od2K1mq2K2d52N1m,Te4p53gSp@5WR+r;:iI$@pTka2K1@b2K0qV2V2i25$er<2K14^2I6Bu2V/.B2eAGo:iI#]2IC,*o5G>W2Ji4YUh-_#QuFjr2N5SILFo<@_j5Zu%SEH]=c>JEbUn:,#]L3e2FJ:p2H[QK]Nu>f2K1Lf2K1Og2I@5RZ>^Gk2Jh74b%3'R6Z=<c2K2g62N0Ci].F.?5aDBO%lpT?Rb)EbnQlsF2K14^2I7*42V3g0SRlQKDK$3&2IC3RWGiKb2Jc]9`FY::So@-52N5NL)D,@&M3d4$@S1_ee;RkkAM$+/i,B+>2FJ=q2H\OiQX1HB2K0kT2K0nU2IA_1%<)rp2Jg)Q7:jiQB5e9o2K0qV2K0)>2K0qV2N3q[Y:Vg10:$L1(-1eT(tWA?"'ubX2K2:'2K0)>2V3EG.:*e)2K2j72K1(Z2ID?eD/`[n2JdJf[W#0[2JcQQ6.]B?]j;Jh2K2p92K4_l2V2.!JmK5-2K3!;2K1dn2IA@1Tl<002Ja.7m:@2f'6&012K3lT2K42]2N2*R5:ojLq3GpF>WE;MdatXXhHgu42K3$<2K45^2V3Hp_Hn"m2K14^2I7*42V3V'?>tM22IDII.V0eiVJq1&2N.uLH7ce.SsKBKBoQ/CU2Y_!2ID,kG%JZ48oTHu2N5##a"?d60:$R<Oc>g#F^>Ei2K4Ab2Jbd`dO=qpJDUjO2N44lRk9G(QJDk^@rQ>#2IK@#Xka;ub#gnECu#E4(mZ<?l]%X)]CAoWYhJ3hQ-ouRGA%;t2UVrI0k^p/2I6^)2K4Dc2JapI3,g:\2IEV8&TEK>2Je[n[;^o92JgNNqSEjK)>]T:l]1Zd*NIi(2HTtJG?tWk2NAhMrJk.Ye#M!02AoW^+'nr^1iShs2I6Bu1iShs2Jbc+dZ,C*iRc/u_7C&3+naEs2Y!4VlGT4<qU,\b95"XH2UVrIhIm822J'b`K5_F;2IGbD`,H@(2JdP<;Iuj8@W3I)2N5d%)(g5$0UArC>"Z(_:lI7!!%jX.RrAeN2FIqf2HYF:o3Mg>2K0AF2I6^)2K5)!2B[[P)V<Cr_d3_c2K0kT2K0nU2I?eBF)Vc,2JftR&nTjR8oP3R2K36B2K0qV2K0qV2N08l3A%sO]9^<7m5b*Yg=ME+fNns#2K1am2K1dn2IFOTWGk#82Jdo$Me2mUj`!H!2K1mq2K2d52N361#VB`=-C,>N'KLbE\(=7@93r"@2K1@b2K0qV2V7YM*F9,g2K5,"2K1(Z2I@564)gY'2J`R+Z>c;J2JhC5K@_Z=HX7)p2K14^2I6a*2V3[q7qIR<05qN<2IDQ.H>jM32Je&S:hAG$Tl;g&2N4)WJLs.3bEa,CUe8e<QAgQNpFXsKhJ`n<2FItg2H\&diEcr-2K1Lf2K1Og2ID2q*H2Y+2Jd\kIq:5Oq/@Uo2K2a42N5^N0J1_l.$j'>0fe#[<S(\pR9g<:2K14^2I6d+2V4gsZ=PH7<,`Ga2IDChMf9<D2Jb-JIq<XmXDgVC2N/c5W\(Ts`0Sj>:eD_Cg5MD:.4stPr,<(Z2FJ"h2HV#[,$k_n2K0kT2K0nU2IFNqWGiKb2JeQFfO[r'Vf3'Z2K36B2K0qV2K2d52N7)'D(R;Uj-DYk*B@6=3S/.PiEcu.2K1%Y2K0nU2IBQt"`P*h2Jhddqdni_W,O#s2K2g62K0qV2K05B2N6-^:+`o`[?gfq<B2t.D:c#(C0h@a2K2:'2K0)>2V1E$9jS:D2K2j72K1(Z2IB'Q5B'f@2Jb,]88qeJ2Jea.pt&7iQ!Op72K2p92K52$2I6^)2BZ1&7+\Yqq-FNF2K3!;2K1dn2IA!e;K+e62Jc4*@:`Dk-#ag<2K3cQ2K2(!2N3H_%kV*E%[ND2ff;7m5h@n<[pBNY2K3$<2K55%2V1,%IpNT!2K2L-2K1(Z2IDu*1iQ:+2Jd8MW,PVK2Je=)/_BXgc<^sp2K14^2I6d+2V0QcpgkL`Wc/Qb2IG*B.rZ-92J`eCQ=[(tJT)aH2N/\Y$n[Lg@$]XcDG&(D`Jj$=nh'\a[r;bj2FJ%i2HV@Ck?\Y52K0AF2K58&2V5%bHsR;t2K0kT2K0nU2IDVGb]"302Jb]!WF`;2G]4)+2K0qV2K0qV2K0qV2N6?;a=RHa/XEQr<B63lp")$_q-FQG2K1%Y2K0nU2IEUA,]FC22Ja4Sk%4<\,&egB2K0qV2K0qV2K5;'2N0Bk.kQ]KpQfF*gc5j/7b<<`"C;SQ2K2:'2K0)>2V2D<7:$J=2K5,"2K1(Z2IDW9^MoXV2JcRlq/Dh<2Jc8\OOqYM;dKsK2K14^2I6d+2V1>JAS$7d\8W%p2IAXff5MA;2JeNo7:dZDqf%Y32N0Wm)D*"3pQiDThFbp6VMosr+"^G(=)\S_2FJ(j2HX@f:gO[I2K4en2K0nU2IDDpP].8M2Jc?F2eCVNaD`E>2K4ho2K0qV2K4kp2N5N8bUqJ%d?Z0qIlXIhcI\*GG?tfp2K4nq2K0nU2IGClJT)7:2JaKeg1=ZZb&AW@2K2g62K0qV2K2g62N74dMCnCcUm;?`]K%SdF4Vu%%pfd]2K4,[2K1(Z2I@(ab]&$G2Jd8>`Gg=A2Jbus0\<tf<aH<O2K14^2I6m.2V1Pd=(O@>no,2U2ID+Xd;T`52JiB]<Fo'DFE!M[2N2%S'.l-<KpL^>r^nAc@#QkWO=gH"+E.b(2FIP[2HV<]DI*=X2K4ts2K1Og2IBqUhJa+B2Ji*@$t[LYZ#Cu'2K2g62N.jt*\G%II$Qn,DE.]+J(Jk?qHa0:2K5"t2K1Og2ID+l?#UFk2JdP:"D+7KV/R]p2K2g62N/X9QRun*]U#F//33!ZjOYI*%UK.M2K5V02K1Og2IDE#4)bhI2JfUV^h$D_-#b-E2K1Rh2N20khCUjg6^G$3dlArp\(@@%6='Z,2K14^2I6m.2V4Bp6XC8;2N7><^lbkk-?n[^'[d<&@;#t^2UVrI4D5):2UVuJ1M@022UW#KG%_<!2UW&L@qZ=d2J(>"DK$3&2IAN7k&:sJ2JcoFq.6/3i,EAE2N.k?F"LK^DO)hi4%`$J3fN"V"tciSa`%['2FJ%i2HYWDjB`>22K0AF2I6^)2K5Y12BZnh=4breZ<e$U2K0kT2K0nU2IA#o^2O_"2Jdi5oOWtXpM_Cm2K5\22K0qV2K4kp2N2I(6nK*\h3L`6QT=?T>hA[`I9mDu2K1%Y2K0nU2I@AR6#[IO2JgaB9P'SqD/^c82K2g62K0qV2I6j-2N0aN:+am7Vj=?#>WHUC;:gnp-XI:t2K1am2K1dn2ID2e+`KTZ2Jem311^`Jd;Z/$2K5_32K2R/2N5l(/M3QPBpL*S<&qb]5M&`lCgIUd2K1@b2K0qV2V4$mm9U:;2K2j72K1(Z2ICj,o5ImJ2JhLWp2F6N2Ji)[jO\ng?sX>X2K2p92K5b42V7fjcs@3s2K14^2I6g,2V2h0Ch7K8mVicQ2IEV]lu3TP2JgI'mUc6SS8^:!2N1$VjXk)K*L:[!Y"B8per43#].LTpgMdS92FJ(j2HWRI).!ig2K1Lf2K1Og2I@SN_Jg.&2JeJF"D*BH<H'4u2K2g62N5N([Oj6PN0]Qtd5`mAk1<A2LL(M+2K14^2I6m.2V0-nTOgNM1iO&A2ICFE6#[IO2Jdbg).fmUo5Ghe2N4$%dOdGpG*\`!CJ#N8@Z4Cj67nRI_Jfpu2FIP[2HY,Nmp6"/2K0kT2K0nU2IEuHKl@[>2JdOd"D&Y<.<$QI2K2d52K0qV2K2d52N2aG?7g1+ka!,Pc8gaaT\"G38mVM42K1%Y2K0nU2IA01")nmf2J`M3I:_]3VJmfq2K2g62K1Xj2K36B2N5^"Be=A]gm2oYC,pmr>Lu\Hc!CCb2K1am2K1dn2IDPF,&f][2Jd74Y@SQ*+`O'g2K5;'2K4kp2N4L;FY0KNCR4*(gGr<VaOdlk$XNhJ2K1@b2K0qV2V5)^?sWiJ2K14^2I6m.2V1&IU1KK#Li<s@2I?ZXRW&nS2Jb?[;e9Y"Tl;g&2N0C/CFu?bA!Y92Db@%Ze;Wmp(bI'Oh/Ee;2FIS\2HZ-PY$M.D2K1Lf2K1Og2IARa1iO)B2Jg`%B4[qQTl;9l2K5e52N5^3^b&lk:6mH#i]5_?'%[QB/RAIm2K14^2I6Bu2V28NJRs/A5]@=M2IF=tpM^b[2Ji'oQXtukN,V5#2N3f_1bD&\7@!uXN(PGi#`Qp1@4d5Q+`Ik)2FIV]2HX."^KpuV2K0kT2K0nU2IF\oXDefe2JcW&0kF=O3cH@Z2K42]2K0qV2K5h62N5r33%^j5%@.@qUH&Ye\(;=VJR/Dm2K1%Y2K0nU2IBR)Nc5WG2Jg6*De3/gDK$l92K4kp2K0qV2K2g62N6AdTe/<BVj?C(2`[b+LY"M8).!BZ2K2:'2K0)>2V5s5Z<dUI2K2j72K1(Z2IHG;L2^>22Jhs#,B-l%2Jc-ge^p\nZ<dUI2K2p92I6a*2V55iM-^7u2K3!;2K1dn2IED\$ZJ8D2JhGr4(W<pCiDeW2K2(!2K2(!2N1n''ePT@9pW5=S2l7Zin#:n;-j==2K3$<2K5k72V2[goj.^72K2L-2K1(Z2I@RjST%E?2JgMmO`4142JgsJB@lc=@pT5O2K14^2I6m.2V23gg1@j%f5M>:2IC!W'Q=]"2JhqR0P*-eMJu#!2N.i+1G&`*6'c*l*_NHE+H2!FnL[Air,<(Z2FIY^2H]n2,[LSf2K0kT2K0nU2I?Hp>At4i2Ji6>BP#U>UMqKn2K42]2K0qV2K1jp2N5AoH7d:9.$b9P[5mSo-J)3@?sWrM2K1%Y2K0nU2IGanZZ$Pl2JeJ$5%VekVf3or2K4kp2K0qV2K5>(2N/DU-S7^eOd:r$-TM=9V:W"6r*BK?2K2:'2K0)>2V5%?^0UoV2K2j72K1(Z2IE8%h/HQ42JfT=AoL\`2Jd]:f%3lK/RAOo2K2p92K5A)2V7pY^Kq#W2K3!;2K1dn2IHII0lT:j2J`qF4(Y-_j`#FY2K3lT2K42]2N1rRX=Z=Nm$@9mAN>G*kL[qcF^>0b2K3$<2K45^2V1cbB3k\T2K2L-2K1(Z2I?_IZuAjV2Jg7@MJuG-2Jbtp:=hm39jRq:2K14^2I6m.2V3t9<b;1>*,lM)2IG=]_f-7'2Jd!?SRlnR6Z>K/2N2CoJ1[@<iKdB@kt4cZ7Z9A]L+SQLic#=@2FI\_2H]kkLgC5!2K0kT2K0nU2I@L`!,rRc2Jb_O>@e/'+`J^A2K5;'2K0qV2K5h62N2H5%P9O.ZBeHU%lsV[K%DFKs'>iC2K1%Y2K0nU2IFfO#]LEk2Jgm*hIWLVn8JfN2K5D*2K1Xj2K5G+2N6q#DCp\*AX3O/0KDtn'A'*/NEub&2K1am2K1dn2IAqFI;h?a2Ji:mT4KqCpMcb>2K5;'2K4kp2N68ki[s/k?'].Yf/]ujYLh3-@pT;Q2K2j72K1(Z2ID8$ZuB3`2JhBSrGYuU2JhYqA(Rl\'j_$X2K2p92K5J,2V6/dH!UWg2K3!;2K1dn2IH5:$#i&B2Jbdu87b]VG]7lA2K3lT2K42]2N7.G\1NdL':)>\CcQ0oM:^7lX^2.F2K3$<2K45^2V6`k='c$E2K14^2I6m.2V1%u<+TN9>At1h2IFPRpM^b[2Jc8u?=ef#CiD2F2N3)pF"M>p(7(U37S:H`3K25mSLnT-!cSR_2FI_`2HUIUG$Y?e2K1Lf2K1Og2IC?TRW&nS2Jh^hULe1%12nMR2K2a42N3SqQS&&#LR,"J@QE@ed+@id6s^&32K14^2I6O$2V7M(U0\>E2K3NJ2JaksfdQ9pdGGJL2N/-WAM"O"a5%':Z#FTq2IHZSOkg>Ym8sRXaP@0;J!Qb[8WAh0TO&,C2N3ke<0?a4_$JE/Q<k$81gUL'2dQs.1gUL'2f']<4HAk0Qe,=U2dQs.1gUL'2f.'eJ<$^kEN0PU2AnRHF']0f2(/[".:*M!1iT;+2IBM\7;rmS2JbE6?"Hd9KlEp(2N2162_BQ=Ng=SZ:,tN5$n;HI!H:-82I6d+1tOA0;2d[sr%59i6/;j^&oab`2IKY^Cu#E4FBAlFinXpU?C$WN]fDh%Qmb^2PDgilnh$48>MTV#`,N6$2IOHna5%':2-;1qp"]qh?C&NPac.??)I<`b2(1Xo!aYlA1iT;+2I@Y;T5YFX2Ja#A,%UiUb&F5m2N6'Km4EAAb*I]JauNL_jXP_dmVk8&2K1dn2IDK;X`-G<2Jai^@V,BVjD[N%2K2(!2K2(!2K5P.2N6(16nP@"*1!r4Ou^Hh[F[0LgPj2lZ7R2u\D7J+_/Q<e2IJcRP2-GZB39c*Q/)b](m^VVnN"<>_^L!(nr/Y@.kNs0U>6-j7<#cO2INUJEnq&:J66-:1YiAPe<\PPY`2oV<F-!H2(0B.CgI7Z1iT;+2IEnS'lXf#2Jha&iFP25^i60c2N73H>qPsShNk)na#W:jpF:p4HZ2']2K1dn2IG+=l>So$2JaZ%6Y2W.\8XjN2K2(!2K2(!2K64A2N2=-$nZc5MO)o=i&R5;r7@aOZ#F$a2K1dn2IGH5^Ml?N2Jhqq!G0U^AoL/Q2K2(!2K2(!2N1nQUb*dEes84.;)t`DIFmb-jGX9[>:iktak[9<lu8l;2IL!H&D[Z-1g!Y$8DOTeOd=37KfKpAU*uJY]Sn*:=tT+9%,D6)R;f[N2IIl[CY]<33`rPu52?O[k`uePqMio)P?n@+1iQ^72K1Cc2V7M)E*`X]1iQd92K1dn2IF,lol*(/2J`HH2eDIdAT1&P2K2(!2K2(!2N5;AM_2NfVj=bR&31"':Y/?K0O=ms1iQ^72K67B2V18Ab$GCh1iNH02Sr_L*f_;Q0<0Q02Atd6ZZ(N22IAq'rFJfJgMjd>2N/'8!%k8TjHd7C_2Z0<@Ce9,2Y@Nc2I6^)1iNK12Stn=@ZJOOhPu[E2As@@>B#2/2IFh@.qP;Za)J]+2N4Y*k:Kf9Wg8gp.ZKJ$hn%;=)taZH2I6^)1iNN22Ssj?.?<OqbGq5B2Am4<oPfDs2I?MgBP#DAZuE^n2N6uYf.@8W:mV#1;2m>cI_%4Qj7Nkf2I6^)1iNT42Sui`@ZHKBrMnb^2An^+LL(D(12stB2JbcOp%lld_iE/G]rK;`2HY-1X^2FN12stB2JaQa:+1KH3H2aJ2N/jA#q\hR]%m\->B$g]2IM\]Dqt`7<`nR6@GM7):6n"Wa#R1h2iaR%7]P:O2At;l-=.+q1N:(C2JbWnUi=)`2Je2nEcA:u2K55%2I6m.1N4DM2Ja!0@Uf71!S<@g8\,7jg%F1.2S(S/&bQU>2I6^)1iNW52T"n5R?!1!/ufAe2AtRsmTp=:12stB2JcPg*r;$W%ZZoI26-P\2HX-25[Fl612stB2J`m%9.5["bAb522N6:=ln(IK/DUWI\T"df2IL?WcJ8fAW`UBs:#-,jL6`*i+uq8N!KPrVB;u?G2AtdHKO,)%1N:(C2JcD-'l^q&2Ja/4C2gJn2K6";2ICtKC2gPp2JbR.M:^+*l+.KFO7`me2S/l.g%>f\2S's2Re>aJ2AsS3,$kSj2(0A;Md?n.1iT;+2IF[%Nc5WG2JccrULd[e&9+M]2N0+LYq6Am5F0HM[lL[[*%ICRRrCI(2K1dn2I@`[:N/J32JcDW%V>-S.WDH'2K5_32K2R/2N5ZL,V9dKSX(%X*]X9T#M3Rnd#9A1"YGBV:#-,jW,SZL2IMpCr7q[ooiUW_Wndur8sZE/YW5r8<%&Yb6]>P5D_5!.?JPq&!-#H_2IP$3X5+)sn6"bcS)"CcV3WqS+H6GVP[4[22(5]0qHa0:1iT;+2IG*]4E(qJ2Jcdnh.>qUm;Sr;2N3[Sat:8Xhj,fjF?/KG2(GP]U2W3/2K1dn2IAjDKQ')h2Jfh]Kk8X/\T"1U2K5;'2K4kp2N08YHnDR3:R5O/%68n+Ok5m0?&['d`%=`3SD=Ld06!i(2IJlI,M`[@dTGirX5+)s?^=Ca#s$/P81=Jl#E60ppapaI.GY<FP&RqG2IJ.2PhcY\X'#)A^"j"0BU29Y!fbc:oNhj=2(8+&gg1,u1iT;+2ICp*8oPEX2Jdb]1M&uGiGb[/2N742=Y5e8b*J\8$TVTTVCE?;[r=FD2K1dn2IDbo@rOTG2Jh$](1ijK`,M?`2K5;'2K4kp2N5Mo+>*)6^R"TJ3&u^@Ib,'tL2^J62K1dn2I?gFXDg>;2Jd[iQXuO"(3"K42K3lT2K42]2N30AZn2RL.[HM;h)RMm7+\T&pP^O!gF_JCk1p?Y(N?:e2IQA_QJDk^-<P_M3o(+WlBY=0&37?%bp\=P9T629+"`G:$Jc$'kA[rG2II**aP@0;<EN?POkg>Y\X!ML#E;PUW*TS@1iQ^72K5A)2V/S=k$A/)1iQd92K1dn2IAX"5&`["2Jgkec"5O%4`GV[2K3lT2K42]2N0U"8hGp^>*aF+KK7$\k1=R14C/0*1iQ^72K5J,2V4VL%UKIV1iNT42SpZTn;^&%,HBe12ApsgOBr@112stB2Jb^Fo(q_"N/l-Zg8`Z/2HZ-Dgg1E(12stB2Jb.WOsoO;>]@Hm2N3_lMCgl%MVSTRa`+K!2IPa;*o..;=BMAoq:u@lI?k4p=ZP&4Iu^ZR1ofN@2Ancp-!h"p1N:(C2Jbp'hf-?F2JbhskA[]@2K55%2V7/BH+L@Dl1O#A2S/J(\b5!h2S/=cNq(,BrV3<c,$l8(2id5SG\A)32eA)USR*;N2u7o$<0"]CC8q]J2HU#Yhf'gT2I@_NZ>^Gk2Je8cnn$Tcp2D:l2K6(=2K0qV2K1ss2N4;*+"^*5m$@M=,rqi*h>3Y4d]+:m2HWk.AoK!02IA4i1iO)B2Je7*Bk8EOLN"NR2K6(=2K0qV2K6+>2N4q981j&51mZYjUcCil4cFX(D(T5T$ZHNh2FIkd2HZDOK3el!2^i3a-scng2fPV.2IBe'@rN'q2Jci`)J-:_3cMXE2K1(Z2ICX]"E:ib2J`H'bAbP;2Jd=Pj,D(Rc7K<3R$R[JD`KMGW%(%KV/RWn2I6^)2V7kun;KsTi@S6\r7q[oFE".m2II(if%gYIoiU?0lJ2c](7#L`ffA9+q^=!pb`&PneLb<C(>T;3(3$du2IO7e5MZX\`E7L$0AQrLVO#MH5E/e8Y?i-^2fN$:2I7B<2u7p"`f>R0QE!BZ2H\0Oq/FHj2YqYUVQ*e)2H\gd#&n%d2V2cBVsu`I/,@AB0O>:)2^gFkNf9joFtKYq`n^s9Nc<.U2IJj.ak[9</6F*Un_FMdO-U:(AW?Q`5OjhGk8OiE2B-Sk>CHja2B)qf6%3[uAU\sI?[-G&4<"R@EIN<%;e^^3<IP7g2B)q:-6!6*@q]`(Is$"Y6:bt<5]UYo2B3";2G7T;:O[W62@p//2HOPH=*Icq=(6$k2Ac_72I9VV2A-;12H+&:??]i1?>g+[2B)r$?Zp2265op>2B-#[>'FB2<H&5P2B)qg7Xf4/IX5eZ2B3";2I'nLHZX)X2A6A22H=DW;g;s+=rRUZ2B+s0:i^1!6@MMS>BC.^2B)qh=+=r/2Ac_72I/i;2@p//2I9VVEcQNM=*8<42h)+J2B)Y22B,E\?qk@a6[f@'2B)q:3?&7=ASZ/:;HA4p6?7>"?[d=93ZA@>GB.9N=`7Nm=`f&C2]`7>2B)Y22B+s07;lnf<IP4d2B)qL;eu`J2B)qg<G?=(=Bp:*2BN4>2H=J>;]>eQ2B,cC;g)Tl>?kJ-2AZY62G%c0;f>1RASZ#$=;qIZ2B,Qf=FY2.FFIWS5]UM^2BN4>2I:"<>8n*f2B,lO<-Mcu;&]SO2B,iB=@d;R5]UYo2A6A22H"ng6>gVj=W7jc2B,cT7"/ak2B3";2HXV:;d=b%2A-;12G7T;:O[Wb6ZNI=2B)qc=)r]a=_UO\?[$>$1E-V7E+s%7;]>bP2B,*A?Zf,g=*AGq1)gM6ATDhF2BE.=2GQrs>:Bln2B)q9VA]`T2ff;?2B)Y22B,cF7<3e,=`k+&ef+n02B)q8EuG>!1cG`U2B*LJ2B,9F<H)m$=`.j+F`_0@6mr>O2B)r"=a+N'"WIue2B-PY=a"!DF;c.62B)sr2B)q:3?&7=FEDi`;e]Ie9R^*p:4?`g0H1;4GBeMd5^j!I2B)r!7!`e(=*\?12A6A22GQR9=_VL%6lQ9D2B,<97!3@kA9r(C6YHb;2B)qeEcPa*3?&7=2A$502H",C;1:pi<.8Am0H1;4ATMS?=_nGL2B)q:+<(U$FF%`P;/'[c=FXT#=*8l9=(uO!<FQ6F2B)qq>C(5A2DkcT2JHpH=(ls766R_<6@Nms6YUD])/`lEEGf4Y>C(5AAp7tE;fcU#;LWqS7WiXa4W=[AIs,PY;cm\]=_Tt4-Q<?+Is,PY;bq_r=D2s97"/b':E'eY2B,Qf=FY2.2B<(<2H+JL;LWr+E#T(t2bOFk2B$PL2B)rf2B)q:58smC@X`:>H?s>[=rRpc2B,oP6?d:Z$2nbp:jm672_t`S2AuY32B)q62B)qt=`o,,4<"R@EHHT[=*@3_>(6gi2B)qf;e(3i,9$p'Ak>_fIniG)F]:irA5kshAm.\#H5cq#2B,oT:2`eP>',(L2A6A22G\216:bP(;]>qU2B,oT:2`u.>&nQ/>CL2-2BN4>2HObK65h/b2B)q42B)qs=`7^)>8nBn2B,6B5^I%t;h$4l=EA3(<ISN5=DoVS6ZRS.(2Z-q!ueti2B)s42B)q93ZA@>2A$502G\216<S`[6?HhS4rXdBFa%KB;d"Lq1b8pI2B*"<2B0gf2Zj?#2B*OK2B,*36YL?86Z7A!==Qtm?[-(q0cLD5F`_6C;g<])4W=[AHZE`L>B4c<FDkd);B#nV2jXfb2B*%=2B1p?U`0NQ2B,lU7!)tg?Zg;_7!`Fu2AZY62HXV>6@NOiE+s%7;]-Ri2B*"b2B)q:,T@$(AU&OJ>'ETq6r.4A<H)R(7;*"<2B)q:+r^g&AU&OJ>'ETq6rIUQ;1;0b>',(L2A$502HX\@5^IeD?X[fchA?O52AZY62GQR0?YFiY=(5gb65pHM2B,cT;L`-&;&]PN2B,lI6uPT?;LWr,4W=[AH?sSX6Z5K>;LWr,3?&7=?rC4oG?63gF';i6A6rKT3?&7=F]:g.G>BX_F';i6A6rKT3?&7=AlhRdF%IeUF';i6A6rKT3ZA@>F%BE*@<uJ5?@$D:2m3M%2B*LJ2B,cI=(6$k(/nYo??]i1?>g+W2B)qh=+=r/(/nr&>oK<L2B)q/2B)qtGtf^b?@$59;eZNG2B)ql=Z]g@<HMZu2AQS52H"/??Zff#;`dS!>BC.Y2B)qg7Xf4/(/nr&>oNdY2B,H=;EI=o;LSn^2B)qt=`f&F6lA&#2B)pY2B)p-XLmX#\N<R56p",t6[3=g?Z]o:>!#j/6u-GZ;eRTK=EebW)`q?L;`e1:7;HP`7<3.l:E$1H2B)t02B)q:1E-V77VQ;Y65qDh2B,T`7"/^u6ZsmQ@o?=!H?<lU;h$4^6[3D#7;-S]>'FtX2CJjG2F(Bh;g)Tl><>XGImtjT7"0L,(.hre?>j'"?[[<o6?FX!=aY/:;`fHZ7<3.o>&o#12A$502H"/56Z5TN;0lih0cLD5I=?26=at;'4<"R@A9)V?6:bM8:i?WL2B)qd?YEm(>(-ae2B)qg;g<]@=`k"U2B)r$6Z6Vc=)VO&ATDhF2Auk92F7\\2B)otWK4<V2[]o+2B)\32B,<9=Dqp)=FPS1"<.W]2AZY62GQR56um,8=(5gb65op>2B,<C>'F3%9R[;=2]E%:$6'8c2@p//2HXhF>"`Sa;K?C%2A-;12GQR,=+>&;=F:C]2B)qj=+>&;=F<Nj:i?WG2B)qj=+>&;=F=<';0.-"3u\I?ApS:J?Zg;c=`8]7>8n'e2B,926>pMa2ZjB$2B"*\2B)q:2B)q94rXdB2Za9"2Aue72B)sp2B)q:4rXdBIs#J\6?7P/1a`RD2AlY42B)q72B)qkE*WaX2B)qf6%3[uIs#YU2'g!bYC_l`X;_Ya2B,<6;gNiF2BN4>2G7T;:Dc$,"XlHk"XjYi2B)qkGT.=22B,T`7"/^u6ZsmQ@o?=!F%BE*GBeMd5^Ih3;B%("2B,T`7"/^u6ZsmQ@o?=!IWBAY>&nQ569@co6?7P36@Nac-lWH,D+f3/>B5/?(0k/=CHG,=>Bsl)(0YLs?YsN#;h#(]2B)r"?@$qS<Gua!2A6A22H,%P=*80,;B#hT2B,EB=FX)s6tguG??0T22A-;12G@i6>tB4o;h#(`2B)qr;gMut?5j<f2B-5a6?<FE2B)qR6[Wab]GV!i2a[qe2B)b52B,BI7<3"mAT)S;;]?.[2B,fA=+:Li2B)pd2B3";2IC=F6>:)P\i(K5do(X6cau(S#i&a4HG29V#h-OH)[Nu4)[OSgCMDR0]/CT6h+qs+]=])local e=h(string.sub(N,0x5),0x0)local C={}p=setmetatable({},{__index=C,__metatable=nil})function Y(M)local F=C if not F[M]then local h=M+0x1 local N=((G(e[h],c[0x1])+G(e[h+0x1],c[0x2])*0x100)+G(e[h+0x2],c[0x3])*0x10000)+G(e[h+0x3],c[0x4])*0x1000000 h=h+0x4 local C={}for M=0x1,N,0x1 do local F=(M-0x1)%0x4+0x1 C[M]=X(G(e[(h+M)-0x1],c[F]))end F[M]=table.concat(C)end return M end end if _MQgpBVb~=p[Y(0x0)]then return end local M,X,F,G,c,h,N,e,C,a,s,j,d,U,w,g,r,o,y,u,A,k s=function(X)local F={}for M=0x0,0x7,0x1 do F[M+0x1]=y[X+M]end local G=0x1 local c=F[0x2]%0x10 for M=0x3,0x8,0x1 do c=c*0x100+F[M]end if F[0x1]>0x7F then G=-1 end local h=(F[0x1]%0x80)*0x10+U(F[0x2]/0x10)if h==0x0 then return 0x0 end c=(M(c,-52)+0x1)*G return M(c,h-0x3FF)end d={}a=function()y=g(y)h()return(u(A[0x1],o()))()end U=math[p[Y(0x32)]]y=p[Y(0x3B)]e=0x4 o=getfenv or function()return _ENV end M=math[p[Y(0x4280)]]r=string[p[Y(0x4289)]]g=function(M)local X={}for F=0x1,#M,0x1 do X[F]=C(M,F)end return X end G=function(M,F,G,c)local h={[0x0]=c}local N={}local C=0x0 local a,U,g,o,n,I U=e+(M-0x1)*0x4 a=y[U]while true do g=true while a==0xC9 do C=C+0x1 N[C]=F[k(U+0x1,0x2)]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x36 do if C>0x0 then o=N[C]else o=nil end N=N[0x0]C=N[p[Y(0x4291)]]+0x1 N[C]=o M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x73 do o=h for M=0x1,y[U+0x3],0x1 do o=o[0x0]end o[k(U+0x1,0x2)]=N[C]N[C]=nil C=C-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x2 do h={[0x0]=h}M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x96 do N={[0x0]=N[0x0]}C=0x0 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xC6 do o=k(U+0x1,0x2)N[C],N[C-o]=N[C-o],N[C]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xB9 do N[C+0x1]=true C=C+0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x43 do C=C-0x1 N[C+0x1]=nil M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x97 do o={}for M,X in ipairs(N)do o[M]=X end C=0x1 N={[0x0]=N[0x0];[0x1]=o}M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xB1 do if N[C]then M=k(U+0x1,0x3)-0x1 end N[C]=nil C=C-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x5F do o=h for M=0x1,y[U+0x3],0x1 do o=o[0x0]end o[k(U+0x1,0x2)]=N[C-0x1][N[C]]N[C]=nil C=C-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xC4 do C=C+0x1 N[C]=u(A[k(U+0x1,0x3)],G,h)M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x6B do I=k(U+0x1,0x3)C=C+0x1 N[C]=w[I]if not N[C]then o=d[I]+j n=y[o]if n==0x0 then n=k(o+0x1,0x4)N[C]=p[Y(0x4296)]for M=0x1,n,0x1 do N[C]=N[C]..r(y[(o+M)+0x4])end elseif n==0x3 then N[C]=s(o+0x1)elseif n==0x1 then N[C]=k(o+0x1,0x4)elseif n==0x2 then N[C]=-k(o+0x1,0x4)end w[I]=N[C]end M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x7B do N[C]=N[C-0x1][N[C]]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x8D do C=C-0x1 N[C],N[C+0x1]={N[C](X(N[C+0x1]))},nil M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x7E do N[p[Y(0x4291)]]=C C=0x0 N={[0x0]=N}M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x44 do N[C]=G[N[C]]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xEE do M=k(U+0x1,0x3)-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x22 do N[C]=N[C][0x1]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xA1 do h=h[0x0]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x24 do N[C+0x1]=false C=C+0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x31 do C=C+0x1 N[C]={}M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x3B do N[C-0x1]=N[C-0x1]..N[C]N[C]=nil C=C-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x33 do N[p[Y(0x4291)]]=C N={[0x0]=N,[0x1]=N[C]}C=0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xD9 do C=C-0x1 N[C],N[C+0x1]=N[C]==N[C+0x1],nil M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x51 do o,N[C]=N[C],nil for M,X in ipairs(o)do N[C]=X C=C+0x1 end C=C-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xE1 do N[C+0x1]=N[C]C=C+0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x79 do N[C-0x1]=N[C-0x1]*N[C]N[C]=nil C=C-0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x45 do o=h for M=0x1,y[U+0x3],0x1 do o=o[0x0]end N[C+0x1]=o[k(U+0x1,0x2)]C=C+0x1 M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x8A do return N[C]end while a==0xEA do return{}end while a==0x77 do C=C-0x1 N[C],N[C+0x1]=N[C][N[C+0x1]],nil M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0x95 do N[C]=not N[C]M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end while a==0xCC do C=C-0x2 N[C][N[C+0x1]]=N[C+0x2]N[C+0x1],N[C+0x2]=nil,nil M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]g=false end if g then M=M+0x1 U=e+(M-0x1)*0x4 a=y[U]end end end w={}k=function(M,X)local F=0x0 local G=0x1 for X=0x0,X-0x1,0x1 do F=F+y[M+X]*G G=G*0x100 end return F end u=function(M,F,c)return function(...)return X(G(M,{...},F,c))end end X=table and table[p[Y(0x429A)]]or unpack h=function()c=k(0x1,0x3)A={}for M=0x0,c-0x1,0x1 do A[M+0x1]=k(e+M*0x3,0x3)end e=e+c*0x3 F=k(e,0x3)for M=0x0,F-0x1,0x1 do d[M+0x1]=k((e+0x3)+M*0x4,0x4)end e=(e+F*0x4)+0x6 N=k(e-0x3,0x3)j=e+N*0x4 end C=string[p[Y(0x42A4)]]A={}return a()end)()
+local Camera = workspace.CurrentCamera
+local LocalPlayer = Players.LocalPlayer
+local WorkspaceService = workspace
+local Player = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+local isMobile = UserInputService.TouchEnabled
+	and not UserInputService.KeyboardEnabled
+local isPC = UserInputService.KeyboardEnabled and UserInputService.MouseEnabled
+
+local viewportSize = workspace.CurrentCamera.ViewportSize
+local screenW = viewportSize.X
+local screenH = viewportSize.Y
+
+local notifWidth = isMobile and 220 or 265
+local notifHeight = isMobile and 58 or 62
+local notifPosX = isMobile and 12 or 18
+local notifPosY = isMobile and 16 or 22
+local cornerRadius = isMobile and 10 or 12
+local progressH = 3
+local iconSize = isMobile and 26 or 28
+local titleSize = isMobile and 11 or 12
+local bodySize = isMobile and 9 or 10
+
+local function getNotifSafeParent()
+	local ok = pcall(function()
+		local t = Instance.new("ScreenGui"); t.Parent = CoreGui; t:Destroy()
+	end)
+	return ok and CoreGui or PlayerGui
+end
+
+local _notifScreen = nil
+local function getNotifScreen()
+	if _notifScreen and _notifScreen.Parent then return _notifScreen end
+	local sg = Instance.new("ScreenGui")
+	sg.Name = "FlycerNotifSystem"
+	sg.ResetOnSpawn = false
+	sg.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	sg.DisplayOrder = 9999999999
+	sg.IgnoreGuiInset = true
+	pcall(function()
+		if syn and syn.protect_gui then syn.protect_gui(sg) end
+	end)
+	sg.Parent = getNotifSafeParent()
+	_notifScreen = sg
+	return sg
+end
+
+local function BuildNotifFrame(parent, cfg)
+	local title = cfg.title or cfg.Title or "Flycer"
+	local body = cfg.body or cfg.Description or ""
+
+	local MainFrame = Instance.new("Frame")
+	MainFrame.Name = "NotifFrame"
+	MainFrame.Size = UDim2.new(0, notifWidth, 0, notifHeight)
+	MainFrame.Position = UDim2.new(1, notifWidth + 20, 1, -(notifHeight + notifPosY))
+	MainFrame.BackgroundColor3 = Color3.fromRGB(12, 12, 16)
+	MainFrame.BackgroundTransparency = 0
+	MainFrame.BorderSizePixel = 0
+	MainFrame.ClipsDescendants = false
+	MainFrame.ZIndex = 2
+	MainFrame.Parent = parent
+
+	local MainCorner = Instance.new("UICorner")
+	MainCorner.CornerRadius = UDim.new(0, cornerRadius)
+	MainCorner.Parent = MainFrame
+
+	local OuterStroke = Instance.new("UIStroke")
+	OuterStroke.Color = Color3.fromRGB(38, 38, 50)
+	OuterStroke.Thickness = 1
+	OuterStroke.Transparency = 0
+	OuterStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	OuterStroke.Parent = MainFrame
+
+	local BgGradient = Instance.new("UIGradient")
+	BgGradient.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(18, 16, 26)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 10, 14)),
+	})
+	BgGradient.Rotation = 130
+	BgGradient.Parent = MainFrame
+
+	local ShimmerClip = Instance.new("Frame")
+	ShimmerClip.Size = UDim2.new(1, 0, 1, 0)
+	ShimmerClip.BackgroundTransparency = 1
+	ShimmerClip.BorderSizePixel = 0
+	ShimmerClip.ClipsDescendants = true
+	ShimmerClip.ZIndex = 3
+	ShimmerClip.Parent = MainFrame
+
+	local ShimmerClipCorner = Instance.new("UICorner")
+	ShimmerClipCorner.CornerRadius = UDim.new(0, cornerRadius)
+	ShimmerClipCorner.Parent = ShimmerClip
+
+	local Shimmer = Instance.new("Frame")
+	Shimmer.Size = UDim2.new(0, notifWidth * 0.3, 1, 0)
+	Shimmer.Position = UDim2.new(-0.35, 0, 0, 0)
+	Shimmer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Shimmer.BackgroundTransparency = 0.97
+	Shimmer.BorderSizePixel = 0
+	Shimmer.ZIndex = 4
+	Shimmer.Rotation = 10
+	Shimmer.Parent = ShimmerClip
+
+	local ShimmerGrad = Instance.new("UIGradient")
+	ShimmerGrad.Transparency = NumberSequence.new({
+		NumberSequenceKeypoint.new(0, 1),
+		NumberSequenceKeypoint.new(0.5, 0.9),
+		NumberSequenceKeypoint.new(1, 1),
+	})
+	ShimmerGrad.Rotation = 90
+	ShimmerGrad.Parent = Shimmer
+
+	local IconFrame = Instance.new("Frame")
+	IconFrame.Size = UDim2.new(0, iconSize, 0, iconSize)
+	IconFrame.Position = UDim2.new(0, notifPosX, 0.5, 0)
+	IconFrame.AnchorPoint = Vector2.new(0, 0.5)
+	IconFrame.BackgroundColor3 = Color3.fromRGB(22, 20, 34)
+	IconFrame.BackgroundTransparency = 0
+	IconFrame.BorderSizePixel = 0
+	IconFrame.ZIndex = 5
+	IconFrame.Parent = MainFrame
+
+	local IconFrameCorner = Instance.new("UICorner")
+	IconFrameCorner.CornerRadius = UDim.new(0, 8)
+	IconFrameCorner.Parent = IconFrame
+
+	local IconFrameStroke = Instance.new("UIStroke")
+	IconFrameStroke.Color = Color3.fromRGB(55, 45, 90)
+	IconFrameStroke.Thickness = 1
+	IconFrameStroke.Transparency = 0
+	IconFrameStroke.Parent = IconFrame
+
+	local IconImage = Instance.new("ImageLabel")
+	IconImage.Size = UDim2.new(0.68, 0, 0.68, 0)
+	IconImage.Position = UDim2.new(0.16, 0, 0.16, 0)
+	IconImage.BackgroundTransparency = 1
+	IconImage.Image = "rbxassetid://89557898457977"
+	IconImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+	IconImage.ScaleType = Enum.ScaleType.Fit
+	IconImage.ZIndex = 6
+	IconImage.Parent = IconFrame
+
+	local dividerX = notifPosX + iconSize + 10
+
+	local Divider = Instance.new("Frame")
+	Divider.Size = UDim2.new(0, 1, 0, notifHeight * 0.55)
+	Divider.Position = UDim2.new(0, dividerX, 0.5, 0)
+	Divider.AnchorPoint = Vector2.new(0, 0.5)
+	Divider.BackgroundColor3 = Color3.fromRGB(55, 45, 90)
+	Divider.BackgroundTransparency = 0
+	Divider.BorderSizePixel = 0
+	Divider.ZIndex = 5
+	Divider.Parent = MainFrame
+
+	local textOffsetX = dividerX + 1 + 10
+	local textWidth = notifWidth - textOffsetX - 8
+
+	local TextContainer = Instance.new("Frame")
+	TextContainer.Size = UDim2.new(0, textWidth, 1, -(progressH + 3))
+	TextContainer.Position = UDim2.new(0, textOffsetX, 0, 0)
+	TextContainer.BackgroundTransparency = 1
+	TextContainer.ZIndex = 5
+	TextContainer.Parent = MainFrame
+
+	local TitleLabel = Instance.new("TextLabel")
+	TitleLabel.Size = UDim2.new(1, 0, 0, 15)
+	TitleLabel.Position = UDim2.new(0, 0, 0, 13)
+	TitleLabel.BackgroundTransparency = 1
+	TitleLabel.Text = title
+	TitleLabel.TextColor3 = Color3.fromRGB(225, 215, 255)
+	TitleLabel.TextSize = titleSize
+	TitleLabel.Font = Enum.Font.GothamBold
+	TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+	TitleLabel.TextTruncate = Enum.TextTruncate.AtEnd
+	TitleLabel.ZIndex = 6
+	TitleLabel.Parent = TextContainer
+
+	local BodyLabel = Instance.new("TextLabel")
+	BodyLabel.Size = UDim2.new(1, 0, 0, 12)
+	BodyLabel.Position = UDim2.new(0, 0, 0, 30)
+	BodyLabel.BackgroundTransparency = 1
+	BodyLabel.Text = body
+	BodyLabel.TextColor3 = Color3.fromRGB(110, 105, 135)
+	BodyLabel.TextSize = bodySize
+	BodyLabel.Font = Enum.Font.Gotham
+	BodyLabel.TextXAlignment = Enum.TextXAlignment.Left
+	BodyLabel.TextTruncate = Enum.TextTruncate.AtEnd
+	BodyLabel.ZIndex = 6
+	BodyLabel.Parent = TextContainer
+
+	local ProgressContainer = Instance.new("Frame")
+	ProgressContainer.Name = "ProgressContainer"
+	ProgressContainer.Size = UDim2.new(1, -(cornerRadius * 2), 0, progressH)
+	ProgressContainer.Position = UDim2.new(0, cornerRadius, 1, -(progressH + 3))
+	ProgressContainer.BackgroundColor3 = Color3.fromRGB(30, 28, 42)
+	ProgressContainer.BackgroundTransparency = 0
+	ProgressContainer.BorderSizePixel = 0
+	ProgressContainer.ZIndex = 9
+	ProgressContainer.Parent = MainFrame
+
+	local ProgressContainerCorner = Instance.new("UICorner")
+	ProgressContainerCorner.CornerRadius = UDim.new(1, 0)
+	ProgressContainerCorner.Parent = ProgressContainer
+
+	local ProgressFill = Instance.new("Frame")
+	ProgressFill.Name = "ProgressFill"
+	ProgressFill.Size = UDim2.new(1, 0, 1, 0)
+	ProgressFill.Position = UDim2.new(0, 0, 0, 0)
+	ProgressFill.BackgroundColor3 = Color3.fromRGB(0, 240, 255)
+	ProgressFill.BorderSizePixel = 0
+	ProgressFill.ZIndex = 10
+	ProgressFill.Parent = ProgressContainer
+
+	local ProgressFillCorner = Instance.new("UICorner")
+	ProgressFillCorner.CornerRadius = UDim.new(1, 0)
+	ProgressFillCorner.Parent = ProgressFill
+
+	local ProgressGrad = Instance.new("UIGradient")
+	ProgressGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 240, 255)),
+		ColorSequenceKeypoint.new(0.33, Color3.fromRGB(0, 120, 255)),
+		ColorSequenceKeypoint.new(0.66, Color3.fromRGB(180, 0, 255)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 160)),
+	})
+	ProgressGrad.Parent = ProgressFill
+
+	return MainFrame, ProgressFill, Shimmer
+end
+
+local _notifActive = false
+
+local function ShowNotification(cfg)
+	cfg = cfg or {}
+	if _notifActive then return end
+	_notifActive = true
+
+	task.spawn(function()
+		local duration = cfg.duration or cfg.Duration or 5
+		local onComplete = cfg.OnComplete or cfg.onComplete
+
+		local screen = getNotifScreen()
+		local MainFrame, ProgressFill, Shimmer = BuildNotifFrame(screen, cfg)
+
+		local targetPos = UDim2.new(1, -(notifWidth + notifPosX), 1, -(notifHeight + notifPosY))
+		local exitPos   = UDim2.new(1, notifWidth + 20, 1, -(notifHeight + notifPosY))
+
+		local slideInInfo  = TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+		local slideOutInfo = TweenInfo.new(0.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In)
+
+		TweenService:Create(MainFrame, slideInInfo, {Position = targetPos}):Play()
+
+		task.spawn(function()
+			while MainFrame and MainFrame.Parent do
+				TweenService:Create(Shimmer, TweenInfo.new(1.5, Enum.EasingStyle.Linear), {
+					Position = UDim2.new(1.2, 0, 0, 0),
+				}):Play()
+				task.wait(3.2)
+				if MainFrame and MainFrame.Parent then
+					Shimmer.Position = UDim2.new(-0.35, 0, 0, 0)
+				end
+			end
+		end)
+
+		TweenService:Create(ProgressFill, TweenInfo.new(duration, Enum.EasingStyle.Linear), {
+			Size = UDim2.new(0, 0, 1, 0),
+		}):Play()
+
+		task.wait(duration)
+
+		local slideOut = TweenService:Create(MainFrame, slideOutInfo, {Position = exitPos})
+		slideOut:Play()
+		slideOut.Completed:Wait()
+
+		if MainFrame and MainFrame.Parent then MainFrame:Destroy() end
+
+		if _notifScreen and _notifScreen.Parent and #_notifScreen:GetChildren() == 0 then
+			_notifScreen:Destroy()
+			_notifScreen = nil
+		end
+
+		_notifActive = false
+		if typeof(onComplete) == "function" then pcall(onComplete) end
+	end)
+end
+
+getgenv().ShowNotification = ShowNotification
+
+local function getSafeParent()
+	if get_hidden_ui then return get_hidden_ui()
+	elseif gethui then return gethui()
+	elseif syn and syn.protect_gui then return CoreGui
+	else return CoreGui end
+end
+
+getgenv().Flycer_SafeParent = getSafeParent()
+
+local DRAG_SMOOTHNESS = 17
+
+local function getDragLerpAlpha(smoothValue)
+	smoothValue = math.clamp(smoothValue or DRAG_SMOOTHNESS, 1, 20)
+	return 1.0 - ((smoothValue - 1) / 19) * 0.9
+end
+
+local function makeDraggable(dragHandle, dragTarget, smoothness)
+	local dragging    = false
+	local dragStart   = nil
+	local startPos    = nil
+	local activeTouch = nil
+	local targetPosition = nil
+	local lerpThread  = nil
+	local lerpRunning = false
+
+	dragTarget = dragTarget or dragHandle
+
+	local lerpAlpha = getDragLerpAlpha(smoothness)
+	local smoothVal = math.clamp(smoothness or DRAG_SMOOTHNESS, 1, 20)
+	local useLerp   = smoothVal > 3
+
+	local function startLerpLoop()
+		if lerpRunning then return end
+		lerpRunning = true
+		lerpThread = task.spawn(function()
+			while lerpRunning do
+				if dragging and targetPosition then
+					local cp   = dragTarget.Position
+					local newX = cp.X.Offset + (targetPosition.X - cp.X.Offset) * lerpAlpha
+					local newY = cp.Y.Offset + (targetPosition.Y - cp.Y.Offset) * lerpAlpha
+					if math.abs(targetPosition.X - newX) < 0.5
+						and math.abs(targetPosition.Y - newY) < 0.5 then
+						dragTarget.Position = UDim2.new(cp.X.Scale, targetPosition.X, cp.Y.Scale, targetPosition.Y)
+					else
+						dragTarget.Position = UDim2.new(cp.X.Scale, newX, cp.Y.Scale, newY)
+					end
+				end
+				task.wait()
+			end
+		end)
+	end
+
+	local function stopLerpLoop()
+		lerpRunning = false
+		if lerpThread then
+			pcall(function() task.cancel(lerpThread) end)
+			lerpThread = nil
+		end
+	end
+
+	local function update(input)
+		if not dragging or not dragStart or not startPos then return end
+		local delta = input.Position - dragStart
+		if useLerp then
+			targetPosition = Vector2.new(
+				startPos.X.Offset + delta.X,
+				startPos.Y.Offset + delta.Y
+			)
+		else
+			dragTarget.Position = UDim2.new(
+				startPos.X.Scale, startPos.X.Offset + delta.X,
+				startPos.Y.Scale, startPos.Y.Offset + delta.Y
+			)
+		end
+	end
+
+	dragHandle.InputBegan:Connect(function(input)
+		local it = input.UserInputType
+		if it ~= Enum.UserInputType.MouseButton1
+			and it ~= Enum.UserInputType.Touch then return end
+		if dragging then return end
+
+		dragging   = true
+		dragStart  = input.Position
+		startPos   = dragTarget.Position
+		targetPosition = Vector2.new(startPos.X.Offset, startPos.Y.Offset)
+		if it == Enum.UserInputType.Touch then activeTouch = input end
+		if useLerp then startLerpLoop() end
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+				if input == activeTouch then activeTouch = nil end
+				if useLerp then
+					task.delay(0.15, function()
+						if not dragging then
+							stopLerpLoop()
+							targetPosition = nil
+						end
+					end)
+				end
+				dragStart = nil
+				startPos  = nil
+			end
+		end)
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if not dragging then return end
+		local it = input.UserInputType
+		if it == Enum.UserInputType.MouseMovement then
+			update(input)
+		elseif it == Enum.UserInputType.Touch and input == activeTouch then
+			update(input)
+		end
+	end)
+end
+
+-- ── Random Name ───────────────────────────────────────────────────
+math.randomseed(os.clock() * 100000)
+
+local charset = {}
+for i = 32, 126 do
+	table.insert(charset, string.char(i))
+end
+
+local weirdChar    = "?"
+local WEIRD_CHANCE = 0.40
+
+local function randomName(len)
+	len = len or math.random(15, 30)
+	local str = ""
+	for i = 1, len do
+		if math.random() < WEIRD_CHANCE then
+			str = str .. weirdChar
+		else
+			str = str .. charset[math.random(1, #charset)]
+		end
+	end
+	return str
+end
+
+local GUI_NAME     = "SettingsMenu"
+local FLAG_NAME    = "_FlycerGUI_Loaded"
+local GUI_REF_NAME = "_FlycerGUI_Instance"
+
+local parent = (syn and syn.protect_gui and CoreGui)
+	or (get_hidden_ui and get_hidden_ui())
+	or (gethui and gethui())
+	or CoreGui
+
+local function destroyExistingFlycer()
+	local g = getgenv and getgenv() or _G
+	if g[FLAG_NAME] then
+		local old = g[GUI_REF_NAME]
+		if old and typeof(old) == "Instance" and old:IsA("ScreenGui") then
+			pcall(function() old:Destroy(); g[GUI_REF_NAME] = nil end)
+		end
+	end
+	g[FLAG_NAME] = true
+end
+
+if getgenv()._FlycerGUI then
+	pcall(function() getgenv()._FlycerGUI:Destroy() end)
+end
+
+local function removeOldFlycerGUI()
+	local containers = {
+		CoreGui,
+		LocalPlayer:FindFirstChild("PlayerGui"),
+		(get_hidden_ui and get_hidden_ui()) or nil,
+		(gethui and gethui()) or nil,
+		parent,
+	}
+	for _, c in ipairs(containers) do
+		if c then
+			for _, ch in ipairs(c:GetChildren()) do
+				if ch:IsA("ScreenGui") and ch.Name == GUI_NAME then
+					pcall(function() ch:Destroy() end)
+				end
+			end
+		end
+	end
+end
+
+destroyExistingFlycer()
+removeOldFlycerGUI()
+task.wait()
+
+local RX = {
+	Bg1     = Color3.fromRGB(14, 14, 22),
+	Bg2     = Color3.fromRGB(20, 20, 30),
+	Bg3     = Color3.fromRGB(28, 28, 40),
+	Card    = Color3.fromRGB(22, 22, 34),
+	Accent1 = Color3.fromRGB(88, 101, 242),
+	Accent2 = Color3.fromRGB(130, 80, 255),
+	Cyan    = Color3.fromRGB(0, 200, 255),
+	Green   = Color3.fromRGB(60, 210, 120),
+	Red     = Color3.fromRGB(240, 70, 80),
+	Orange  = Color3.fromRGB(255, 140, 50),
+	T1      = Color3.fromRGB(240, 240, 255),
+	T2      = Color3.fromRGB(155, 160, 185),
+	T3      = Color3.fromRGB(90, 95, 120),
+	Border  = Color3.fromRGB(45, 48, 70),
+	MainAlpha = 0.15,
+	CardAlpha = 0.30,
+	F1 = Enum.Font.GothamBold,
+	F2 = Enum.Font.GothamMedium,
+	FM = Enum.Font.Code,
+}
+
+local TWEEN_FAST   = TweenInfo.new(0.15, Enum.EasingStyle.Quint)
+local TWEEN_NORMAL = TweenInfo.new(0.25, Enum.EasingStyle.Quint)
+
+-- ══════════════════════════════════════════════════════════════════
+--  State ukuran GUI
+-- ══════════════════════════════════════════════════════════════════
+local currentGUIWidth  = 290
+local currentGUIHeight = 245
+
+-- ══════════════════════════════════════════════════════════════════
+--  openResizeGUI
+-- ══════════════════════════════════════════════════════════════════
+local function openResizeGUI(refs)
+	local MF             = refs.MainFrame
+	local EF             = refs.ExtraFrame
+	local TF             = refs.ToggleFrame
+	local updateExtraPos = refs.updateExtraPos
+
+	-- Cegah duplikat
+	local function findExisting()
+		for _, c in ipairs({
+			CoreGui,
+			(get_hidden_ui and get_hidden_ui()) or nil,
+			(gethui and gethui()) or nil,
+		}) do
+			if c then
+				local found = c:FindFirstChild("FlycerResizeGui")
+				if found then return found end
+			end
+		end
+	end
+	local existing = findExisting()
+	if existing then existing:Destroy() end
+
+	local resizeParent = (syn and syn.protect_gui and CoreGui)
+		or (get_hidden_ui and get_hidden_ui())
+		or (gethui and gethui())
+		or CoreGui
+
+	local ResizeSG = Instance.new("ScreenGui")
+	ResizeSG.Name           = "FlycerResizeGui"
+	ResizeSG.ResetOnSpawn   = false
+	ResizeSG.IgnoreGuiInset = true
+	ResizeSG.DisplayOrder   = 999999999
+	ResizeSG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	pcall(function()
+		if syn and syn.protect_gui then syn.protect_gui(ResizeSG) end
+	end)
+	ResizeSG.Parent = resizeParent
+
+	local isClosing = false
+
+	local function hideMainUI()
+		if MF and MF.Parent then MF.Visible = false end
+		if EF and EF.Parent then EF.Visible = false end
+		if TF and TF.Parent then TF.Visible = false end
+	end
+
+	local function showMainUI()
+		if MF and MF.Parent then MF.Visible = true end
+		if EF and EF.Parent then EF.Visible = true end
+		if TF and TF.Parent then TF.Visible = true end
+	end
+
+	local PANEL_W = 270
+	local PANEL_H = 185
+
+	-- ── Overlay visual (Active=false = klik tidak menutup panel) ───
+	local Overlay = Instance.new("Frame")
+	Overlay.Size                   = UDim2.new(1, 0, 1, 0)
+	Overlay.BackgroundColor3       = Color3.fromRGB(0, 0, 0)
+	Overlay.BackgroundTransparency = 0.55
+	Overlay.BorderSizePixel        = 0
+	Overlay.ZIndex                 = 10
+	Overlay.Active                 = false
+	Overlay.Parent                 = ResizeSG
+
+	-- ── Panel utama (nilai ASLI, bukan transparan) ─────────────────
+	local ResizePanel = Instance.new("Frame")
+	ResizePanel.Size                   = UDim2.new(0, PANEL_W, 0, PANEL_H)
+	ResizePanel.AnchorPoint            = Vector2.new(0.5, 0.5)
+	ResizePanel.Position               = UDim2.new(0.5, 0, 0.5, 0)
+	ResizePanel.BackgroundColor3       = Color3.fromRGB(14, 14, 22)
+	ResizePanel.BackgroundTransparency = 0.05
+	ResizePanel.BorderSizePixel        = 0
+	ResizePanel.ZIndex                 = 11
+	ResizePanel.ClipsDescendants       = false
+	ResizePanel.Active                 = true
+	ResizePanel.Parent                 = ResizeSG
+
+	local panelCorner = Instance.new("UICorner")
+	panelCorner.CornerRadius = UDim.new(0, 14)
+	panelCorner.Parent       = ResizePanel
+
+	local panelStroke = Instance.new("UIStroke")
+	panelStroke.Thickness       = 1.3
+	panelStroke.Color           = RX.Accent1
+	panelStroke.Transparency    = 0.2
+	panelStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	panelStroke.Parent          = ResizePanel
+
+	local panelStrokeGrad = Instance.new("UIGradient")
+	panelStrokeGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0,    Color3.fromRGB(55, 60, 100)),
+		ColorSequenceKeypoint.new(0.35, RX.Accent1),
+		ColorSequenceKeypoint.new(0.65, RX.Accent2),
+		ColorSequenceKeypoint.new(1,    Color3.fromRGB(55, 60, 100)),
+	})
+	panelStrokeGrad.Rotation = 135
+	panelStrokeGrad.Parent   = panelStroke
+
+	local strokeRotThread = task.spawn(function()
+		local rot = 0
+		while ResizePanel and ResizePanel.Parent do
+			rot = (rot + 0.4) % 360
+			panelStrokeGrad.Rotation = rot
+			task.wait(0.04)
+		end
+	end)
+
+	local panelGrad = Instance.new("UIGradient")
+	panelGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0,   Color3.fromRGB(18, 18, 28)),
+		ColorSequenceKeypoint.new(0.5, Color3.fromRGB(14, 14, 22)),
+		ColorSequenceKeypoint.new(1,   Color3.fromRGB(10, 10, 18)),
+	})
+	panelGrad.Rotation = 180
+	panelGrad.Parent   = ResizePanel
+
+	local glassPanel = Instance.new("Frame")
+	glassPanel.Size                   = UDim2.new(1, 0, 0, 42)
+	glassPanel.BackgroundColor3       = Color3.fromRGB(255, 255, 255)
+	glassPanel.BackgroundTransparency = 0.96
+	glassPanel.BorderSizePixel        = 0
+	glassPanel.ZIndex                 = 12
+	glassPanel.Parent                 = ResizePanel
+
+	local glassPanelCorner = Instance.new("UICorner")
+	glassPanelCorner.CornerRadius = UDim.new(0, 14)
+	glassPanelCorner.Parent       = glassPanel
+
+	-- ── Header / drag bar ──────────────────────────────────────────
+	local titleBar = Instance.new("Frame")
+	titleBar.Size                   = UDim2.new(1, 0, 0, 40)
+	titleBar.BackgroundTransparency = 1
+	titleBar.ZIndex                 = 13
+	titleBar.Parent                 = ResizePanel
+	makeDraggable(titleBar, ResizePanel)
+
+	local titleLbl = Instance.new("TextLabel")
+	titleLbl.Size                   = UDim2.new(1, -52, 1, 0)
+	titleLbl.Position               = UDim2.new(0, 14, 0, 0)
+	titleLbl.BackgroundTransparency = 1
+	titleLbl.Text                   = "Resize GUI"
+	titleLbl.TextColor3             = RX.T1
+	titleLbl.TextTransparency       = 0
+	titleLbl.Font                   = RX.F1
+	titleLbl.TextSize               = 13
+	titleLbl.TextXAlignment         = Enum.TextXAlignment.Left
+	titleLbl.TextYAlignment         = Enum.TextYAlignment.Center
+	titleLbl.ZIndex                 = 14
+	titleLbl.Parent                 = titleBar
+
+	-- ── Tombol Close X ─────────────────────────────────────────────
+	local closeBtn = Instance.new("TextButton")
+	closeBtn.Size                   = UDim2.new(0, 26, 0, 26)
+	closeBtn.Position               = UDim2.new(1, -34, 0.5, 0)
+	closeBtn.AnchorPoint            = Vector2.new(0, 0.5)
+	closeBtn.BackgroundColor3       = Color3.fromRGB(240, 70, 80)
+	closeBtn.BackgroundTransparency = 0.25
+	closeBtn.Text                   = "X"
+	closeBtn.Font                   = RX.F1
+	closeBtn.TextSize               = 12
+	closeBtn.TextColor3             = Color3.fromRGB(255, 255, 255)
+	closeBtn.TextTransparency       = 0
+	closeBtn.AutoButtonColor        = false
+	closeBtn.BorderSizePixel        = 0
+	closeBtn.ZIndex                 = 15
+	closeBtn.Parent                 = titleBar
+
+	local closeBtnCorner = Instance.new("UICorner")
+	closeBtnCorner.CornerRadius = UDim.new(0, 8)
+	closeBtnCorner.Parent       = closeBtn
+
+	local closeBtnStroke = Instance.new("UIStroke")
+	closeBtnStroke.Thickness       = 1
+	closeBtnStroke.Color           = Color3.fromRGB(240, 70, 80)
+	closeBtnStroke.Transparency    = 0.5
+	closeBtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	closeBtnStroke.Parent          = closeBtn
+
+	if not isMobile then
+		closeBtn.MouseEnter:Connect(function()
+			TweenService:Create(closeBtn, TWEEN_FAST,
+				{BackgroundTransparency = 0}):Play()
+		end)
+		closeBtn.MouseLeave:Connect(function()
+			TweenService:Create(closeBtn, TWEEN_FAST,
+				{BackgroundTransparency = 0.25}):Play()
+		end)
+	end
+
+	-- ── Separator ──────────────────────────────────────────────────
+	local sep = Instance.new("Frame")
+	sep.Size                   = UDim2.new(1, -10, 0, 1)
+	sep.Position               = UDim2.new(0, 5, 0, 39)
+	sep.BackgroundColor3       = Color3.fromRGB(255, 255, 255)
+	sep.BackgroundTransparency = 0
+	sep.BorderSizePixel        = 0
+	sep.ZIndex                 = 13
+	sep.Parent                 = ResizePanel
+
+	local sepGrad = Instance.new("UIGradient")
+	sepGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0.00, RX.Accent1),
+		ColorSequenceKeypoint.new(0.45, RX.Accent2),
+		ColorSequenceKeypoint.new(0.50, RX.Cyan),
+		ColorSequenceKeypoint.new(0.55, RX.Accent2),
+		ColorSequenceKeypoint.new(1.00, RX.Accent1),
+	})
+	sepGrad.Transparency = NumberSequence.new({
+		NumberSequenceKeypoint.new(0.00, 0.85),
+		NumberSequenceKeypoint.new(0.25, 0.30),
+		NumberSequenceKeypoint.new(0.45, 0.05),
+		NumberSequenceKeypoint.new(0.55, 0.05),
+		NumberSequenceKeypoint.new(0.75, 0.30),
+		NumberSequenceKeypoint.new(1.00, 0.85),
+	})
+	sepGrad.Parent = sep
+
+	-- ── Desc label ─────────────────────────────────────────────────
+	local descLbl = Instance.new("TextLabel")
+	descLbl.Size                   = UDim2.new(1, -16, 0, 18)
+	descLbl.Position               = UDim2.new(0, 14, 0, 46)
+	descLbl.BackgroundTransparency = 1
+	descLbl.Text                   = "Masukkan ukuran Width dan Height :"
+	descLbl.TextColor3             = RX.T2
+	descLbl.TextTransparency       = 0
+	descLbl.Font                   = RX.F2
+	descLbl.TextSize               = 10
+	descLbl.TextXAlignment         = Enum.TextXAlignment.Left
+	descLbl.ZIndex                 = 13
+	descLbl.Parent                 = ResizePanel
+
+	-- ── Input field helper ─────────────────────────────────────────
+	local function makeInputField(parentFrame, anchorX, labelTxt, defaultVal)
+		local W = 108
+
+		local container = Instance.new("Frame")
+		container.Size                   = UDim2.new(0, W, 0, 56)
+		container.Position               = UDim2.new(0, anchorX, 0, 68)
+		container.BackgroundTransparency = 1
+		container.ZIndex                 = 13
+		container.Parent                 = parentFrame
+
+		local lbl = Instance.new("TextLabel")
+		lbl.Size                   = UDim2.new(1, 0, 0, 16)
+		lbl.BackgroundTransparency = 1
+		lbl.Text                   = labelTxt
+		lbl.TextColor3             = RX.T2
+		lbl.TextTransparency       = 0
+		lbl.Font                   = RX.F2
+		lbl.TextSize               = 10
+		lbl.TextXAlignment         = Enum.TextXAlignment.Center
+		lbl.ZIndex                 = 14
+		lbl.Parent                 = container
+
+		local inputBG = Instance.new("Frame")
+		inputBG.Size                   = UDim2.new(1, 0, 0, 34)
+		inputBG.Position               = UDim2.new(0, 0, 0, 18)
+		inputBG.BackgroundColor3       = Color3.fromRGB(10, 10, 18)
+		inputBG.BackgroundTransparency = 0.08
+		inputBG.BorderSizePixel        = 0
+		inputBG.ZIndex                 = 14
+		inputBG.Parent                 = container
+
+		local inCorner = Instance.new("UICorner")
+		inCorner.CornerRadius = UDim.new(0, 9)
+		inCorner.Parent       = inputBG
+
+		local inStroke = Instance.new("UIStroke")
+		inStroke.Thickness       = 1.2
+		inStroke.Color           = Color3.fromRGB(55, 58, 85)
+		inStroke.Transparency    = 0.3
+		inStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		inStroke.Parent          = inputBG
+
+		local textBox = Instance.new("TextBox")
+		textBox.Size                   = UDim2.new(1, -10, 1, 0)
+		textBox.Position               = UDim2.new(0, 5, 0, 0)
+		textBox.BackgroundTransparency = 1
+		textBox.Text                   = tostring(defaultVal)
+		textBox.PlaceholderText        = tostring(defaultVal)
+		textBox.PlaceholderColor3      = RX.T3
+		textBox.Font                   = RX.FM
+		textBox.TextSize               = 15
+		textBox.TextColor3             = RX.Cyan
+		textBox.TextTransparency       = 0
+		textBox.ClearTextOnFocus       = false
+		textBox.TextXAlignment         = Enum.TextXAlignment.Center
+		textBox.ZIndex                 = 15
+		textBox.Parent                 = inputBG
+
+		-- Filter hanya angka
+		textBox:GetPropertyChangedSignal("Text"):Connect(function()
+			local filtered = textBox.Text:gsub("[^%d]", "")
+			if filtered ~= textBox.Text then
+				textBox.Text = filtered
+			end
+		end)
+
+		textBox.Focused:Connect(function()
+			TweenService:Create(inStroke, TWEEN_FAST,
+				{Color = RX.Accent1, Transparency = 0}):Play()
+			TweenService:Create(inputBG, TWEEN_FAST,
+				{BackgroundTransparency = 0}):Play()
+		end)
+		textBox.FocusLost:Connect(function()
+			TweenService:Create(inStroke, TWEEN_FAST,
+				{Color = Color3.fromRGB(55, 58, 85), Transparency = 0.3}):Play()
+			TweenService:Create(inputBG, TWEEN_FAST,
+				{BackgroundTransparency = 0.08}):Play()
+		end)
+
+		return container, textBox
+	end
+
+	local FIELD_W = 108
+	local GAP     = 14
+	local totalW  = FIELD_W * 2 + GAP
+	local marginL = (PANEL_W - totalW) / 2
+
+	local _, widthInput  =
+		makeInputField(ResizePanel, marginL,               "Width  (Kiri)",   currentGUIWidth)
+	local _, heightInput =
+		makeInputField(ResizePanel, marginL + FIELD_W + GAP, "Height  (Kanan)", currentGUIHeight)
+
+	local midDiv = Instance.new("Frame")
+	midDiv.Size                   = UDim2.new(0, 1, 0, 34)
+	midDiv.Position               = UDim2.new(0, marginL + FIELD_W + GAP / 2, 0, 68 + 18)
+	midDiv.BackgroundColor3       = RX.Accent1
+	midDiv.BackgroundTransparency = 0.55
+	midDiv.BorderSizePixel        = 0
+	midDiv.ZIndex                 = 13
+	midDiv.Parent                 = ResizePanel
+
+	-- ── Tombol CHANGE GUI ──────────────────────────────────────────
+	local changeBtn = Instance.new("TextButton")
+	changeBtn.Size                   = UDim2.new(1, -28, 0, 34)
+	changeBtn.Position               = UDim2.new(0, 14, 0, PANEL_H - 48)
+	changeBtn.BackgroundColor3       = RX.Accent1
+	changeBtn.BackgroundTransparency = 0.1
+	changeBtn.Text                   = "CHANGE GUI"
+	changeBtn.Font                   = RX.F1
+	changeBtn.TextSize               = 12
+	changeBtn.TextColor3             = Color3.fromRGB(220, 225, 255)
+	changeBtn.TextTransparency       = 0
+	changeBtn.AutoButtonColor        = false
+	changeBtn.BorderSizePixel        = 0
+	changeBtn.ZIndex                 = 13
+	changeBtn.Parent                 = ResizePanel
+
+	local changeBtnCorner = Instance.new("UICorner")
+	changeBtnCorner.CornerRadius = UDim.new(0, 10)
+	changeBtnCorner.Parent       = changeBtn
+
+	local changeBtnStroke = Instance.new("UIStroke")
+	changeBtnStroke.Thickness       = 1
+	changeBtnStroke.Color           = RX.Accent1
+	changeBtnStroke.Transparency    = 0.45
+	changeBtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	changeBtnStroke.Parent          = changeBtn
+
+	local changeBtnGrad = Instance.new("UIGradient")
+	changeBtnGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(88, 101, 242)),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(130, 80, 255)),
+	})
+	changeBtnGrad.Rotation = 90
+	changeBtnGrad.Parent   = changeBtn
+
+	if not isMobile then
+		changeBtn.MouseEnter:Connect(function()
+			TweenService:Create(changeBtn, TWEEN_FAST,
+				{BackgroundTransparency = 0}):Play()
+		end)
+		changeBtn.MouseLeave:Connect(function()
+			TweenService:Create(changeBtn, TWEEN_FAST,
+				{BackgroundTransparency = 0.1}):Play()
+		end)
+	end
+
+	-- ══════════════════════════════════════════════════════════════
+	--  Cache nilai ASLI dulu (sebelum disembunyikan)
+	--  lalu sembunyikan semua → fade masuk
+	--  Ini persis sama dengan sistem HIDE/OPEN GUI
+	-- ══════════════════════════════════════════════════════════════
+	local originalTrans = {}
+
+	local function cacheObj(obj)
+		if not obj or not obj.Parent then return end
+		local t = {}
+		if obj:IsA("Frame") then
+			t.BackgroundTransparency = obj.BackgroundTransparency
+		end
+		if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+			t.BackgroundTransparency = obj.BackgroundTransparency
+			t.TextTransparency       = obj.TextTransparency
+		end
+		if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
+			t.BackgroundTransparency = obj.BackgroundTransparency
+			t.ImageTransparency      = obj.ImageTransparency
+		end
+		if obj:IsA("UIStroke") then
+			t.Transparency = obj.Transparency
+		end
+		if obj:IsA("ScrollingFrame") then
+			t.BackgroundTransparency     = obj.BackgroundTransparency
+			t.ScrollBarImageTransparency = obj.ScrollBarImageTransparency
+		end
+		if next(t) then
+			originalTrans[obj] = t
+		end
+	end
+
+	-- Step 1: Cache nilai asli semua object (saat ini masih terlihat)
+	cacheObj(ResizePanel)
+	cacheObj(Overlay)
+	for _, d in ipairs(ResizePanel:GetDescendants()) do
+		cacheObj(d)
+	end
+
+	-- Step 2: Sembunyikan semua secara instan (tanpa tween)
+	local function hideAllInstant()
+		for obj, props in pairs(originalTrans) do
+			if obj and obj.Parent then
+				for propName, _ in pairs(props) do
+					pcall(function() obj[propName] = 1 end)
+				end
+			end
+		end
+	end
+
+	-- Step 3: Fade masuk (kembalikan ke nilai asli)
+	local function fadePanelTo(targetAlpha, dur, callback)
+		local tweenI = TweenInfo.new(dur, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+		for obj, props in pairs(originalTrans) do
+			if obj and obj.Parent then
+				local tp = {}
+				for propName, origVal in pairs(props) do
+					tp[propName] = (targetAlpha == 0) and origVal or 1
+				end
+				if next(tp) then
+					TweenService:Create(obj, tweenI, tp):Play()
+				end
+			end
+		end
+		if callback then
+			task.delay(dur, callback)
+		end
+	end
+
+	-- ── Fungsi tutup (satu pintu keluar) ──────────────────────────
+	local function closeResizeGui(callback)
+		if isClosing then return end
+		isClosing = true
+		pcall(function() task.cancel(strokeRotThread) end)
+		fadePanelTo(1, 0.30, function()
+			showMainUI()
+			if ResizeSG and ResizeSG.Parent then
+				ResizeSG:Destroy()
+			end
+			if callback then
+				task.spawn(callback)
+			end
+		end)
+	end
+
+	-- ── Tombol Close X ─────────────────────────────────────────────
+	local closeBtnDebounce = false
+	local function onCloseBtn()
+		if closeBtnDebounce or isClosing then return end
+		closeBtnDebounce = true
+		closeResizeGui()
+		task.delay(1, function() closeBtnDebounce = false end)
+	end
+	closeBtn.MouseButton1Click:Connect(onCloseBtn)
+	closeBtn.TouchTap:Connect(onCloseBtn)
+
+	-- ── Apply resize ───────────────────────────────────────────────
+	local applyDebounce = false
+
+	local function applyResize()
+		if applyDebounce or isClosing then return end
+		applyDebounce = true
+
+		local wVal = math.clamp(tonumber(widthInput.Text)  or currentGUIWidth,  150, 800)
+		local hVal = math.clamp(tonumber(heightInput.Text) or currentGUIHeight, 100, 700)
+
+		currentGUIWidth  = wVal
+		currentGUIHeight = hVal
+
+		changeBtn.Text = "APPLYING..."
+		TweenService:Create(changeBtn, TweenInfo.new(0.1),
+			{BackgroundColor3 = RX.Green, BackgroundTransparency = 0}):Play()
+
+		task.delay(0.25, function()
+			closeResizeGui(function()
+				TweenService:Create(MF,
+					TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+					{Size = UDim2.new(0, wVal, 0, hVal)}):Play()
+
+				local refs2 = getgenv().FlycerRefs
+				if refs2 and refs2.ContentWrapper then
+					TweenService:Create(refs2.ContentWrapper,
+						TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+						{Size = UDim2.new(1, 0, 0, hVal - 36)}):Play()
+				end
+
+				task.delay(0.05, function()
+					if updateExtraPos then updateExtraPos() end
+				end)
+
+				pcall(function()
+					ShowNotification({
+						title    = "Resize GUI",
+						body     = string.format("Ukuran: %d × %d px", wVal, hVal),
+						duration = 3,
+					})
+				end)
+			end)
+		end)
+
+		task.delay(2.5, function() applyDebounce = false end)
+	end
+
+	changeBtn.MouseButton1Click:Connect(applyResize)
+	changeBtn.TouchTap:Connect(applyResize)
+
+	-- ══════════════════════════════════════════════════════════════
+	--  Eksekusi: hide GUI utama → sembunyikan panel instan →
+	--  fade masuk (persis HIDE/OPEN GUI)
+	-- ══════════════════════════════════════════════════════════════
+	hideMainUI()
+	hideAllInstant()
+	fadePanelTo(0, 0.30)
+end
+
+-- ══════════════════════════════════════════════════════════════════
+--  MAIN
+-- ══════════════════════════════════════════════════════════════════
+ShowNotification({
+	title    = "Flycer",
+	body     = "Script berhasil dimuat.",
+	duration = 3,
+	OnComplete = function()
+
+		local MainGui = Instance.new("ScreenGui")
+		MainGui.Name           = GUI_NAME
+		MainGui.ResetOnSpawn   = false
+		MainGui.IgnoreGuiInset = true
+		MainGui.Archivable     = false
+		pcall(function()
+			if syn and syn.protect_gui then syn.protect_gui(MainGui) end
+			if sethiddenproperty and typeof(sethiddenproperty) == "function" then
+				sethiddenproperty(MainGui, "Name", "")
+			end
+		end)
+		MainGui.Parent = getgenv().Flycer_SafeParent or parent
+		getgenv()._FlycerGUI = MainGui
+		local g = getgenv and getgenv() or _G
+		g[GUI_REF_NAME] = MainGui
+
+		local ok, exists = pcall(function()
+			for _, v in pairs(MainGui:GetChildren()) do
+				if v:IsA("Frame") and v:GetAttribute("FlycerTag") == true then return true end
+			end
+		end)
+		if ok and exists then return end
+
+		local GUI_TITLE   = "Quarantine Border"
+		local GUI_VERSION = "v2.1"
+
+		-- ── Main Frame ───────────────────────────────────────────────
+		local MainFrame = Instance.new("Frame")
+		MainFrame.Name                   = randomName()
+		MainFrame.Size                   = UDim2.new(0, currentGUIWidth, 0, currentGUIHeight)
+		MainFrame.AutomaticSize          = Enum.AutomaticSize.None
+		MainFrame.Position               = UDim2.new(0.38, 0, 0.1, 0)
+		MainFrame.BackgroundColor3       = RX.Bg1
+		MainFrame.BackgroundTransparency = RX.MainAlpha
+		MainFrame.BorderSizePixel        = 0
+		MainFrame.Active                 = true
+		MainFrame.ClipsDescendants       = false
+		MainFrame:SetAttribute("FlycerTag", true)
+		MainFrame.Parent                 = MainGui
+
+		local mainCorner = Instance.new("UICorner")
+		mainCorner.CornerRadius = UDim.new(0, 12)
+		mainCorner.Parent       = MainFrame
+
+		local mainStroke = Instance.new("UIStroke")
+		mainStroke.Thickness       = 1.2
+		mainStroke.Transparency    = 0.3
+		mainStroke.Color           = RX.T1
+		mainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		mainStroke.Parent          = MainFrame
+
+		local mainStrokeGrad = Instance.new("UIGradient")
+		mainStrokeGrad.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0,    Color3.fromRGB(55, 60, 100)),
+			ColorSequenceKeypoint.new(0.35, RX.Accent1),
+			ColorSequenceKeypoint.new(0.65, RX.Accent2),
+			ColorSequenceKeypoint.new(1,    Color3.fromRGB(55, 60, 100)),
+		})
+		mainStrokeGrad.Rotation = 135
+		mainStrokeGrad.Parent   = mainStroke
+
+		task.spawn(function()
+			local rot = 0
+			while MainFrame and MainFrame.Parent do
+				rot = (rot + 0.4) % 360
+				mainStrokeGrad.Rotation = rot
+				task.wait(0.04)
+			end
+		end)
+
+		local glassOverlay = Instance.new("Frame")
+		glassOverlay.Name                   = "GlassOverlay"
+		glassOverlay.Size                   = UDim2.new(1, 0, 0, 38)
+		glassOverlay.BackgroundColor3       = Color3.fromRGB(255, 255, 255)
+		glassOverlay.BackgroundTransparency = 0.96
+		glassOverlay.BorderSizePixel        = 0
+		glassOverlay.ZIndex                 = 1
+		glassOverlay.Parent                 = MainFrame
+
+		local glassCorner = Instance.new("UICorner")
+		glassCorner.CornerRadius = UDim.new(0, 12)
+		glassCorner.Parent       = glassOverlay
+
+		local glassGrad = Instance.new("UIGradient")
+		glassGrad.Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0,   0.88),
+			NumberSequenceKeypoint.new(0.4, 0.96),
+			NumberSequenceKeypoint.new(1,   1),
+		})
+		glassGrad.Rotation = 90
+		glassGrad.Parent   = glassOverlay
+
+		local innerGrad = Instance.new("UIGradient")
+		innerGrad.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0,   Color3.fromRGB(18, 18, 28)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(14, 14, 22)),
+			ColorSequenceKeypoint.new(1,   Color3.fromRGB(10, 10, 18)),
+		})
+		innerGrad.Rotation = 180
+		innerGrad.Parent   = MainFrame
+
+		-- ── Header ───────────────────────────────────────────────────
+		local Header = Instance.new("Frame")
+		Header.Name                   = randomName()
+		Header.Size                   = UDim2.new(1, 0, 0, 36)
+		Header.BackgroundTransparency = 1
+		Header.BorderSizePixel        = 0
+		Header.ZIndex                 = 10
+		Header.Parent                 = MainFrame
+		makeDraggable(Header, MainFrame)
+
+		local titleLabel = Instance.new("TextLabel")
+		titleLabel.Size                   = UDim2.new(1, -50, 1, 0)
+		titleLabel.Position               = UDim2.new(0, 12, 0, 0)
+		titleLabel.BackgroundTransparency = 1
+		titleLabel.Text                   = GUI_TITLE
+		titleLabel.TextColor3             = RX.T1
+		titleLabel.Font                   = RX.F1
+		titleLabel.TextSize               = 13
+		titleLabel.TextXAlignment         = Enum.TextXAlignment.Left
+		titleLabel.TextYAlignment         = Enum.TextYAlignment.Center
+		titleLabel.ZIndex                 = 11
+		titleLabel.Parent                 = Header
+
+		local verBadge = Instance.new("TextLabel")
+		verBadge.Size                   = UDim2.new(0, 28, 0, 14)
+		verBadge.Position               = UDim2.new(1, -38, 0.5, 0)
+		verBadge.AnchorPoint            = Vector2.new(0, 0.5)
+		verBadge.BackgroundColor3       = RX.Accent1
+		verBadge.BackgroundTransparency = 0.8
+		verBadge.Text                   = GUI_VERSION
+		verBadge.TextColor3             = RX.Cyan
+		verBadge.Font                   = RX.FM
+		verBadge.TextSize               = 9
+		verBadge.ZIndex                 = 11
+		verBadge.Parent                 = Header
+
+		local vbCorner = Instance.new("UICorner")
+		vbCorner.CornerRadius = UDim.new(0, 4)
+		vbCorner.Parent       = verBadge
+
+		local function makeSeparator(parentFrame)
+			local sep = Instance.new("Frame")
+			sep.Size             = UDim2.new(1, -10, 0, 1)
+			sep.Position         = UDim2.new(0, 5, 1, -1)
+			sep.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			sep.BorderSizePixel  = 0
+			sep.ZIndex           = 10
+			sep:SetAttribute("FlycerTag", true)
+			sep.Parent           = parentFrame
+
+			local sg = Instance.new("UIGradient")
+			sg.Color = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.00, RX.Accent1),
+				ColorSequenceKeypoint.new(0.45, RX.Accent2),
+				ColorSequenceKeypoint.new(0.50, RX.Cyan),
+				ColorSequenceKeypoint.new(0.55, RX.Accent2),
+				ColorSequenceKeypoint.new(1.00, RX.Accent1),
+			})
+			sg.Transparency = NumberSequence.new({
+				NumberSequenceKeypoint.new(0.00, 0.85),
+				NumberSequenceKeypoint.new(0.25, 0.30),
+				NumberSequenceKeypoint.new(0.45, 0.05),
+				NumberSequenceKeypoint.new(0.55, 0.05),
+				NumberSequenceKeypoint.new(0.75, 0.30),
+				NumberSequenceKeypoint.new(1.00, 0.85),
+			})
+			sg.Parent = sep
+			return sep
+		end
+
+		makeSeparator(Header)
+
+		-- ── Content ──────────────────────────────────────────────────
+		local CANVAS_SCALE = 4.10
+
+		local ContentWrapper = Instance.new("Frame")
+		ContentWrapper.Name                   = randomName()
+		ContentWrapper.Size                   = UDim2.new(1, 0, 0, currentGUIHeight - 36)
+		ContentWrapper.AutomaticSize          = Enum.AutomaticSize.None
+		ContentWrapper.Position               = UDim2.new(0, 0, 0, 36)
+		ContentWrapper.BackgroundTransparency = 1
+		ContentWrapper.BorderSizePixel        = 0
+		ContentWrapper.ClipsDescendants       = false
+		ContentWrapper.ZIndex                 = 5
+		ContentWrapper.Parent                 = MainFrame
+
+		local ContentFrame = Instance.new("ScrollingFrame")
+		ContentFrame.Name                     = randomName()
+		ContentFrame.Size                     = UDim2.new(1, 0, 1, 0)
+		ContentFrame.CanvasSize               = UDim2.new(0, 0, CANVAS_SCALE, 1)
+		ContentFrame.AutomaticCanvasSize      = Enum.AutomaticSize.None
+		ContentFrame.ScrollingDirection       = Enum.ScrollingDirection.Y
+		ContentFrame.ScrollingEnabled         = true
+		ContentFrame.ScrollBarThickness       = 3
+		ContentFrame.ScrollBarImageColor3     = RX.Accent1
+		ContentFrame.ScrollBarImageTransparency = 1
+		ContentFrame.BackgroundTransparency   = 1
+		ContentFrame.BorderSizePixel          = 0
+		ContentFrame.ZIndex                   = 5
+		ContentFrame.ElasticBehavior          = Enum.ElasticBehavior.Never
+		ContentFrame.Parent                   = ContentWrapper
+
+		local contentPad = Instance.new("UIPadding")
+		contentPad.PaddingLeft   = UDim.new(0, 6)
+		contentPad.PaddingRight  = UDim.new(0, 6)
+		contentPad.PaddingTop    = UDim.new(0, 4)
+		contentPad.PaddingBottom = UDim.new(0, 8)
+		contentPad.Parent        = ContentFrame
+
+		local listLayout = Instance.new("UIListLayout")
+		listLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		listLayout.VerticalAlignment   = Enum.VerticalAlignment.Top
+		listLayout.SortOrder           = Enum.SortOrder.LayoutOrder
+		listLayout.FillDirection       = Enum.FillDirection.Vertical
+		listLayout.Padding             = UDim.new(0, 4)
+		listLayout.Parent              = ContentFrame
+
+		getgenv().FlycerMainFrame = MainFrame
+		getgenv().FlycerRefs = {
+			GUI             = MainGui,
+			MainFrame       = MainFrame,
+			ContentWrapper  = ContentWrapper,
+			ContentFrame    = ContentFrame,
+			Layout          = listLayout,
+			ButtonContainer = ContentFrame,
+			Platform        = {isMobile = isMobile, isPC = isPC},
+		}
+
+		-- ── Section Label ─────────────────────────────────────────────
+		local function createTextLabel(nameText, layoutOrder)
+			local f = Instance.new("Frame")
+			f.Size                   = UDim2.new(1, 0, 0, 22)
+			f.BackgroundColor3       = RX.Bg3
+			f.BackgroundTransparency = 0.45
+			f.BorderSizePixel        = 0
+			f.LayoutOrder            = layoutOrder or 0
+			f:SetAttribute("FlycerTag", true)
+			f.Parent                 = ContentFrame
+
+			local c = Instance.new("UICorner")
+			c.CornerRadius = UDim.new(0, 8)
+			c.Parent       = f
+
+			local lb = Instance.new("Frame")
+			lb.Size             = UDim2.new(0, 3, 0.55, 0)
+			lb.Position         = UDim2.new(0, 5, 0.5, 0)
+			lb.AnchorPoint      = Vector2.new(0, 0.5)
+			lb.BackgroundColor3 = RX.Accent1
+			lb.BorderSizePixel  = 0
+			lb.Parent           = f
+
+			local lbc = Instance.new("UICorner")
+			lbc.CornerRadius = UDim.new(1, 0)
+			lbc.Parent       = lb
+
+			local lbl = Instance.new("TextLabel")
+			lbl.Size                   = UDim2.new(1, -14, 1, 0)
+			lbl.Position               = UDim2.new(0, 14, 0, 0)
+			lbl.BackgroundTransparency = 1
+			lbl.Text                   = nameText
+			lbl.TextColor3             = RX.T2
+			lbl.Font                   = RX.F1
+			lbl.TextSize               = 11
+			lbl.TextWrapped            = true
+			lbl.TextXAlignment         = Enum.TextXAlignment.Left
+			lbl.TextYAlignment         = Enum.TextYAlignment.Center
+			lbl.Parent                 = f
+		end
+
+		createTextLabel("Combat", 1)
+
+		-- ── Card helper ───────────────────────────────────────────────
+		local function makeCard(layoutOrder)
+			local f = Instance.new("Frame")
+			f.Name                   = randomName()
+			f.Size                   = UDim2.new(1, 0, 0, 32)
+			f.BackgroundColor3       = RX.Card
+			f.BackgroundTransparency = RX.CardAlpha
+			f.BorderSizePixel        = 0
+			f.LayoutOrder            = layoutOrder or 99
+			f.Parent                 = ContentFrame
+
+			local fc = Instance.new("UICorner")
+			fc.CornerRadius = UDim.new(0, 8)
+			fc.Parent       = f
+
+			local fs = Instance.new("UIStroke")
+			fs.Thickness       = 1
+			fs.Color           = RX.Border
+			fs.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			fs.Transparency    = 0.65
+			fs.Parent          = f
+
+			local fg = Instance.new("UIGradient")
+			fg.Color = ColorSequence.new({
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(26, 26, 38)),
+				ColorSequenceKeypoint.new(1, Color3.fromRGB(18, 18, 28)),
+			})
+			fg.Rotation = 90
+			fg.Parent   = f
+
+			if not isMobile then
+				f.MouseEnter:Connect(function()
+					TweenService:Create(f, TWEEN_FAST,
+						{BackgroundTransparency = RX.CardAlpha - 0.08}):Play()
+				end)
+				f.MouseLeave:Connect(function()
+					TweenService:Create(f, TWEEN_FAST,
+						{BackgroundTransparency = RX.CardAlpha}):Play()
+				end)
+			end
+
+			return f
+		end
+
+		-- ── Troops Rapid Fire ─────────────────────────────────────────
+		local function CreateTroopsRapidFireToggle(layoutOrder)
+			local rapidFireEnabled = false
+			local rapidFireSpeed   = 20
+			local rapidFireThread  = nil
+
+			local function DoCombatForRapidFire()
+				local formation = workspace:FindFirstChild("Formation")
+				if not formation then return end
+				local children = formation:GetChildren()
+				for _, unit in ipairs(children) do
+					if not rapidFireEnabled then return end
+					if unit.Name:find("Player") then
+						local action = unit:FindFirstChild("Action")
+						if action then
+							for _, target in ipairs(children) do
+								if not rapidFireEnabled then return end
+								if target.Name:find("Defender") then
+									pcall(function()
+										if action:IsA("RemoteEvent") then
+											action:FireServer(target)
+										else
+											action:Fire(target)
+										end
+									end)
+								end
+							end
+						end
+					end
+				end
+			end
+
+			local function RunRapidFire()
+				rapidFireThread = task.spawn(function()
+					while rapidFireEnabled do
+						DoCombatForRapidFire()
+						task.wait(math.clamp(1 / (rapidFireSpeed or 20), 0.01, 0.2))
+					end
+				end)
+			end
+
+			local frame = makeCard(layoutOrder)
+
+			local lbl = Instance.new("TextLabel")
+			lbl.Size                   = UDim2.new(0.55, 0, 1, 0)
+			lbl.Position               = UDim2.new(0, 10, 0, 0)
+			lbl.BackgroundTransparency = 1
+			lbl.Text                   = "Troops Rapid Fire"
+			lbl.Font                   = RX.F2
+			lbl.TextSize               = 11
+			lbl.TextColor3             = RX.T1
+			lbl.TextXAlignment         = Enum.TextXAlignment.Left
+			lbl.TextTruncate           = Enum.TextTruncate.AtEnd
+			lbl.ZIndex                 = 5
+			lbl.Parent                 = frame
+
+			local track = Instance.new("Frame")
+			track.Size                   = UDim2.new(0, 38, 0, 18)
+			track.Position               = UDim2.new(1, -(38 + 8), 0.5, 0)
+			track.AnchorPoint            = Vector2.new(0, 0.5)
+			track.BackgroundColor3       = Color3.fromRGB(38, 38, 55)
+			track.BackgroundTransparency = 0.15
+			track.ZIndex                 = 5
+			track.Parent                 = frame
+
+			local trackCorner = Instance.new("UICorner")
+			trackCorner.CornerRadius = UDim.new(1, 0)
+			trackCorner.Parent       = track
+
+			local trackStroke = Instance.new("UIStroke")
+			trackStroke.Thickness    = 1
+			trackStroke.Color        = Color3.fromRGB(55, 55, 80)
+			trackStroke.Transparency = 0.4
+			trackStroke.Parent       = track
+
+			local knob = Instance.new("Frame")
+			knob.Size             = UDim2.new(0, 14, 0, 14)
+			knob.Position         = UDim2.new(0, 2, 0.5, 0)
+			knob.AnchorPoint      = Vector2.new(0, 0.5)
+			knob.BackgroundColor3 = Color3.fromRGB(140, 140, 160)
+			knob.BorderSizePixel  = 0
+			knob.ZIndex           = 6
+			knob.Parent           = track
+
+			local knobCorner = Instance.new("UICorner")
+			knobCorner.CornerRadius = UDim.new(1, 0)
+			knobCorner.Parent       = knob
+
+			local toggleBtn = Instance.new("TextButton")
+			toggleBtn.Size                   = UDim2.new(1, 0, 1, 0)
+			toggleBtn.BackgroundTransparency = 1
+			toggleBtn.Text                   = ""
+			toggleBtn.ZIndex                 = 8
+			toggleBtn.Parent                 = track
+
+			local knobOnX = 38 - 14 - 2
+
+			local function setToggleState(en)
+				if en then
+					TweenService:Create(knob,
+						TweenInfo.new(0.2, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+						{Position = UDim2.new(0, knobOnX, 0.5, 0),
+						BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					TweenService:Create(track, TWEEN_NORMAL,
+						{BackgroundColor3 = RX.Green}):Play()
+					TweenService:Create(trackStroke, TWEEN_NORMAL,
+						{Color = RX.Green, Transparency = 0.3}):Play()
+				else
+					TweenService:Create(knob,
+						TweenInfo.new(0.2, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+						{Position = UDim2.new(0, 2, 0.5, 0),
+						BackgroundColor3 = Color3.fromRGB(140, 140, 160)}):Play()
+					TweenService:Create(track, TWEEN_NORMAL,
+						{BackgroundColor3 = Color3.fromRGB(38, 38, 55)}):Play()
+					TweenService:Create(trackStroke, TWEEN_NORMAL,
+						{Color = Color3.fromRGB(55, 55, 80), Transparency = 0.4}):Play()
+				end
+			end
+
+			toggleBtn.MouseButton1Click:Connect(function()
+				rapidFireEnabled = not rapidFireEnabled
+				setToggleState(rapidFireEnabled)
+				if rapidFireEnabled then
+					RunRapidFire()
+				else
+					if rapidFireThread then
+						pcall(function() task.cancel(rapidFireThread) end)
+						rapidFireThread = nil
+					end
+				end
+			end)
+
+			frame.Destroying:Connect(function()
+				rapidFireEnabled = false
+				if rapidFireThread then
+					pcall(function() task.cancel(rapidFireThread) end)
+					rapidFireThread = nil
+				end
+			end)
+
+			-- Fire Speed card
+			local speedFrame = makeCard((layoutOrder or 99) + 1)
+
+			local spLbl = Instance.new("TextLabel")
+			spLbl.Size                   = UDim2.new(0.5, 0, 1, 0)
+			spLbl.Position               = UDim2.new(0, 10, 0, 0)
+			spLbl.BackgroundTransparency = 1
+			spLbl.Text                   = "Fire Speed"
+			spLbl.Font                   = RX.F2
+			spLbl.TextSize               = 11
+			spLbl.TextColor3             = RX.T1
+			spLbl.TextXAlignment         = Enum.TextXAlignment.Left
+			spLbl.ZIndex                 = 5
+			spLbl.Parent                 = speedFrame
+
+			local inputBG = Instance.new("Frame")
+			inputBG.Size                   = UDim2.new(0, 46, 0, 20)
+			inputBG.Position               = UDim2.new(1, -(46 + 8), 0.5, 0)
+			inputBG.AnchorPoint            = Vector2.new(0, 0.5)
+			inputBG.BackgroundColor3       = Color3.fromRGB(14, 14, 24)
+			inputBG.BackgroundTransparency = 0.15
+			inputBG.ZIndex                 = 5
+			inputBG.Parent                 = speedFrame
+
+			local inCorner = Instance.new("UICorner")
+			inCorner.CornerRadius = UDim.new(0, 6)
+			inCorner.Parent       = inputBG
+
+			local inStroke = Instance.new("UIStroke")
+			inStroke.Thickness       = 1
+			inStroke.Color           = Color3.fromRGB(50, 52, 75)
+			inStroke.Transparency    = 0.3
+			inStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+			inStroke.Parent          = inputBG
+
+			local speedInput = Instance.new("TextBox")
+			speedInput.Size                   = UDim2.new(1, -6, 1, 0)
+			speedInput.Position               = UDim2.new(0, 3, 0, 0)
+			speedInput.BackgroundTransparency = 1
+			speedInput.Text                   = tostring(rapidFireSpeed)
+			speedInput.PlaceholderText        = "5-100"
+			speedInput.Font                   = RX.FM
+			speedInput.TextSize               = 11
+			speedInput.TextColor3             = RX.Cyan
+			speedInput.PlaceholderColor3      = RX.T3
+			speedInput.ClearTextOnFocus       = false
+			speedInput.ZIndex                 = 6
+			speedInput.Parent                 = inputBG
+
+			speedInput.Focused:Connect(function()
+				TweenService:Create(inStroke, TWEEN_FAST,
+					{Color = RX.Accent1, Transparency = 0}):Play()
+			end)
+
+			local saveDebounce = nil
+
+			local function ApplySpeed(val)
+				local num = tonumber(val)
+				if not num or val == "" then num = 5 end
+				num = math.clamp(math.floor(num), 5, 100)
+				rapidFireSpeed  = num
+				speedInput.Text = tostring(num)
+				TweenService:Create(inputBG, TweenInfo.new(0.12),
+					{BackgroundColor3 = RX.Accent1}):Play()
+				task.delay(0.25, function()
+					TweenService:Create(inputBG, TweenInfo.new(0.25),
+						{BackgroundColor3 = Color3.fromRGB(14, 14, 24)}):Play()
+				end)
+			end
+
+			speedInput:GetPropertyChangedSignal("Text"):Connect(function()
+				if speedInput.Text == "" then
+					if saveDebounce then task.cancel(saveDebounce); saveDebounce = nil end
+					return
+				end
+				if saveDebounce then task.cancel(saveDebounce) end
+				saveDebounce = task.delay(0.6, function() ApplySpeed(speedInput.Text) end)
+			end)
+
+			speedInput.FocusLost:Connect(function()
+				TweenService:Create(inStroke, TWEEN_FAST,
+					{Color = Color3.fromRGB(50, 52, 75), Transparency = 0.3}):Play()
+				if saveDebounce then task.cancel(saveDebounce); saveDebounce = nil end
+				ApplySpeed(speedInput.Text ~= "" and speedInput.Text or "5")
+			end)
+		end
+
+		for i = 1, 10 do
+			CreateTroopsRapidFireToggle(3)
+		end
+
+		-- ── Extra Bottom Frame ────────────────────────────────────────
+		local ExtraFrame = Instance.new("Frame")
+		ExtraFrame.Name                   = randomName()
+		ExtraFrame.Size                   = UDim2.new(0, currentGUIWidth, 0, 24)
+		ExtraFrame.BackgroundColor3       = RX.Bg1
+		ExtraFrame.BackgroundTransparency = RX.MainAlpha
+		ExtraFrame.BorderSizePixel        = 0
+		ExtraFrame:SetAttribute("FlycerTag", true)
+		ExtraFrame.Parent                 = MainGui
+
+		local ec = Instance.new("UICorner")
+		ec.CornerRadius = UDim.new(0, 10)
+		ec.Parent       = ExtraFrame
+
+		local es = Instance.new("UIStroke")
+		es.Thickness       = 1.2
+		es.Color           = RX.Accent1
+		es.Transparency    = 0.5
+		es.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		es.Parent          = ExtraFrame
+
+		local esGrad = Instance.new("UIGradient")
+		esGrad.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0,   Color3.fromRGB(55, 60, 100)),
+			ColorSequenceKeypoint.new(0.5, RX.Accent1),
+			ColorSequenceKeypoint.new(1,   Color3.fromRGB(55, 60, 100)),
+		})
+		esGrad.Parent = es
+
+		local extraGrad = Instance.new("UIGradient")
+		extraGrad.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(18, 18, 28)),
+			ColorSequenceKeypoint.new(1, Color3.fromRGB(14, 14, 22)),
+		})
+		extraGrad.Parent = ExtraFrame
+
+		local function updateExtraPos()
+			if not (MainFrame and MainFrame.Parent) then return end
+			local p = MainFrame.Position
+			local s = MainFrame.AbsoluteSize
+			ExtraFrame.Position = UDim2.new(p.X.Scale, p.X.Offset, p.Y.Scale, p.Y.Offset + s.Y + 5)
+			ExtraFrame.Size     = UDim2.new(0, s.X, 0, 24)
+		end
+
+		MainFrame:GetPropertyChangedSignal("Position"):Connect(updateExtraPos)
+		MainFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateExtraPos)
+		task.defer(updateExtraPos)
+
+		-- ── Timer Label ───────────────────────────────────────────────
+		local timerLabel = Instance.new("TextLabel")
+		timerLabel.Position               = UDim2.new(0, 4, 0.5, 0)
+		timerLabel.AnchorPoint            = Vector2.new(0, 0.5)
+		timerLabel.Size                   = UDim2.new(0, 100, 0, 16)
+		timerLabel.BackgroundColor3       = RX.Accent1
+		timerLabel.BackgroundTransparency = 0.8
+		timerLabel.BorderSizePixel        = 0
+		timerLabel.Text                   = "0000D : 00H : 00M"
+		timerLabel.Font                   = RX.FM
+		timerLabel.TextSize               = 9
+		timerLabel.TextColor3             = RX.T2
+		timerLabel.ZIndex                 = 11
+		timerLabel.Parent                 = ExtraFrame
+
+		local timerCorner = Instance.new("UICorner")
+		timerCorner.CornerRadius = UDim.new(0, 6)
+		timerCorner.Parent       = timerLabel
+
+		local timerStroke = Instance.new("UIStroke")
+		timerStroke.Thickness       = 1
+		timerStroke.Color           = RX.Accent1
+		timerStroke.Transparency    = 0.3
+		timerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		timerStroke.Parent          = timerLabel
+
+		local GOLD = Color3.fromRGB(255, 215, 0)
+
+		local function formatTimer(totalSeconds)
+			if totalSeconds <= 0 then return nil end
+			local days    = math.floor(totalSeconds / 86400)
+			local hours   = math.floor((totalSeconds % 86400) / 3600)
+			local minutes = math.floor((totalSeconds % 3600) / 60)
+			return string.format("%04dD : %02dH : %02dM", days, hours, minutes)
+		end
+
+		local function startKeyTimer()
+			local keyData = nil
+			for _ = 1, 10 do
+				keyData = getgenv and getgenv()._FlycerKeyData
+				if keyData then break end
+				task.wait(0.5)
+			end
+			if not keyData then
+				timerLabel.Text       = "NO KEY"
+				timerLabel.TextColor3 = RX.Red
+				return
+			end
+			local keyType         = keyData.keyType
+			local expireTimestamp = keyData.expireTimestamp
+			if keyType == "lifetime" then
+				timerLabel.Text       = "LIFETIME ACCESS"
+				timerLabel.TextColor3 = GOLD
+				return
+			end
+			if keyType == "free" and not expireTimestamp then
+				timerLabel.Text       = "FREE : UNLIMITED"
+				timerLabel.TextColor3 = GOLD
+				return
+			end
+			if expireTimestamp then
+				local expireTime = tonumber(expireTimestamp)
+				if expireTime - os.time() <= 0 then
+					timerLabel.Text       = "EXPIRED"
+					timerLabel.TextColor3 = RX.Red
+					return
+				end
+				task.spawn(function()
+					while timerLabel and timerLabel.Parent do
+						local remaining = expireTime - os.time()
+						local formatted = formatTimer(remaining)
+						if not formatted then
+							timerLabel.Text       = "EXPIRED"
+							timerLabel.TextColor3 = RX.Red
+							break
+						end
+						timerLabel.Text       = formatted
+						timerLabel.TextColor3 = RX.Green
+						task.wait(1)
+					end
+				end)
+			end
+		end
+
+		task.defer(startKeyTimer)
+
+		-- ── Toggle HIDE / OPEN ────────────────────────────────────────
+		local mainVisible = true
+		local isAnimating = false
+
+		local function getUniversalSafeParent()
+			local guiName = "ExperienceSettings"
+			pcall(function()
+				local old = CoreGui:FindFirstChild(guiName)
+				if old then old:Destroy() end
+			end)
+			local sg = Instance.new("ScreenGui")
+			sg.Name           = guiName
+			sg.ResetOnSpawn   = false
+			sg.IgnoreGuiInset = true
+			sg.DisplayOrder   = 9999999999
+			sg.Parent         = CoreGui
+			return sg
+		end
+
+		local SafeParent = getUniversalSafeParent()
+		getgenv().Flycer_SafeParent = SafeParent
+
+		local ToggleFrame = Instance.new("TextButton")
+		ToggleFrame.Size                   = UDim2.new(0, 90, 0, 34)
+		ToggleFrame.Position               = UDim2.new(0, 20, 0, 120)
+		ToggleFrame.BackgroundColor3       = RX.Bg1
+		ToggleFrame.BackgroundTransparency = RX.MainAlpha
+		ToggleFrame.BorderSizePixel        = 0
+		ToggleFrame.Active                 = true
+		ToggleFrame.Text                   = ""
+		ToggleFrame.ZIndex                 = 10
+		ToggleFrame.Parent                 = SafeParent
+
+		local tCorner = Instance.new("UICorner")
+		tCorner.CornerRadius = UDim.new(0, 12)
+		tCorner.Parent       = ToggleFrame
+
+		local tStroke = Instance.new("UIStroke")
+		tStroke.Thickness       = 1.2
+		tStroke.Transparency    = 0.2
+		tStroke.Color           = RX.T1
+		tStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		tStroke.Parent          = ToggleFrame
+
+		local tStrokeGrad = Instance.new("UIGradient")
+		tStrokeGrad.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0,    Color3.fromRGB(55, 60, 100)),
+			ColorSequenceKeypoint.new(0.35, RX.Accent1),
+			ColorSequenceKeypoint.new(0.65, RX.Accent2),
+			ColorSequenceKeypoint.new(1,    Color3.fromRGB(55, 60, 100)),
+		})
+		tStrokeGrad.Rotation = 135
+		tStrokeGrad.Parent   = tStroke
+
+		task.spawn(function()
+			local rot = 0
+			while ToggleFrame and ToggleFrame.Parent do
+				rot = (rot + 0.4) % 360
+				tStrokeGrad.Rotation = rot
+				task.wait(0.04)
+			end
+		end)
+
+		local tInnerGrad = Instance.new("UIGradient")
+		tInnerGrad.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0,   Color3.fromRGB(18, 18, 28)),
+			ColorSequenceKeypoint.new(0.5, Color3.fromRGB(14, 14, 22)),
+			ColorSequenceKeypoint.new(1,   Color3.fromRGB(10, 10, 18)),
+		})
+		tInnerGrad.Rotation = 180
+		tInnerGrad.Parent   = ToggleFrame
+
+		local tGlass = Instance.new("Frame")
+		tGlass.Size                   = UDim2.new(1, 0, 0.5, 0)
+		tGlass.BackgroundColor3       = Color3.fromRGB(255, 255, 255)
+		tGlass.BackgroundTransparency = 0.96
+		tGlass.BorderSizePixel        = 0
+		tGlass.ZIndex                 = 11
+		tGlass.Parent                 = ToggleFrame
+
+		local tGlassCorner = Instance.new("UICorner")
+		tGlassCorner.CornerRadius = UDim.new(0, 12)
+		tGlassCorner.Parent       = tGlass
+
+		local tGlassGrad = Instance.new("UIGradient")
+		tGlassGrad.Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0,   0.88),
+			NumberSequenceKeypoint.new(0.5, 0.96),
+			NumberSequenceKeypoint.new(1,   1),
+		})
+		tGlassGrad.Rotation = 90
+		tGlassGrad.Parent   = tGlass
+
+		local tAccentBar = Instance.new("Frame")
+		tAccentBar.Size             = UDim2.new(0, 3, 0, 16)
+		tAccentBar.Position         = UDim2.new(0, 8, 0.5, 0)
+		tAccentBar.AnchorPoint      = Vector2.new(0, 0.5)
+		tAccentBar.BackgroundColor3 = RX.Accent1
+		tAccentBar.BorderSizePixel  = 0
+		tAccentBar.ZIndex           = 13
+		tAccentBar.Parent           = ToggleFrame
+
+		local tAccentCorner = Instance.new("UICorner")
+		tAccentCorner.CornerRadius = UDim.new(1, 0)
+		tAccentCorner.Parent       = tAccentBar
+
+		local ToggleIcon = Instance.new("ImageLabel")
+		ToggleIcon.Size                   = UDim2.new(0, 24, 0, 24)
+		ToggleIcon.Position               = UDim2.new(0, 12, 0.5, 0)
+		ToggleIcon.AnchorPoint            = Vector2.new(0, 0.5)
+		ToggleIcon.BackgroundTransparency = 1
+		ToggleIcon.Image                  = "rbxassetid://89557898457977"
+		ToggleIcon.ImageColor3            = RX.T1
+		ToggleIcon.ZIndex                 = 13
+		ToggleIcon.Parent                 = ToggleFrame
+
+		local tDivider = Instance.new("Frame")
+		tDivider.Size                   = UDim2.new(0, 1, 0, 20)
+		tDivider.Position               = UDim2.new(0, 38, 0.5, 0)
+		tDivider.AnchorPoint            = Vector2.new(0, 0.5)
+		tDivider.BackgroundColor3       = RX.Accent1
+		tDivider.BackgroundTransparency = 0.6
+		tDivider.BorderSizePixel        = 0
+		tDivider.ZIndex                 = 13
+		tDivider.Parent                 = ToggleFrame
+
+		local ToggleText = Instance.new("TextLabel")
+		ToggleText.Size                   = UDim2.new(1, -48, 1, 0)
+		ToggleText.Position               = UDim2.new(0, 48, 0, 0)
+		ToggleText.BackgroundTransparency = 1
+		ToggleText.Text                   = "HIDE"
+		ToggleText.TextColor3             = RX.T1
+		ToggleText.Font                   = RX.F1
+		ToggleText.TextSize               = 12
+		ToggleText.TextXAlignment         = Enum.TextXAlignment.Left
+		ToggleText.TextYAlignment         = Enum.TextYAlignment.Center
+		ToggleText.ZIndex                 = 13
+		ToggleText.Parent                 = ToggleFrame
+
+		if not isMobile then
+			ToggleFrame.MouseEnter:Connect(function()
+				TweenService:Create(ToggleFrame, TWEEN_FAST,
+					{BackgroundTransparency = math.max(RX.MainAlpha - 0.05, 0)}):Play()
+				TweenService:Create(tStroke, TWEEN_FAST, {Transparency = 0.3}):Play()
+				TweenService:Create(ToggleIcon, TWEEN_FAST, {ImageColor3 = RX.Cyan}):Play()
+			end)
+			ToggleFrame.MouseLeave:Connect(function()
+				TweenService:Create(ToggleFrame, TWEEN_FAST,
+					{BackgroundTransparency = RX.MainAlpha}):Play()
+				TweenService:Create(tStroke, TWEEN_FAST, {Transparency = 0.5}):Play()
+				TweenService:Create(ToggleIcon, TWEEN_FAST, {ImageColor3 = RX.T1}):Play()
+			end)
+		end
+
+		makeDraggable(ToggleFrame)
+
+		local originalTransparencies = {}
+
+		local function cacheOriginalValues()
+			originalTransparencies = {}
+			local function cacheObj(obj)
+				if not obj or not obj.Parent then return end
+				if obj:IsA("Frame") then
+					originalTransparencies[obj] = {BackgroundTransparency = obj.BackgroundTransparency}
+				elseif obj:IsA("TextLabel") then
+					originalTransparencies[obj] = {TextTransparency = obj.TextTransparency, BackgroundTransparency = obj.BackgroundTransparency}
+				elseif obj:IsA("TextButton") then
+					originalTransparencies[obj] = {TextTransparency = obj.TextTransparency, BackgroundTransparency = obj.BackgroundTransparency}
+				elseif obj:IsA("TextBox") then
+					originalTransparencies[obj] = {TextTransparency = obj.TextTransparency, BackgroundTransparency = obj.BackgroundTransparency}
+				elseif obj:IsA("ImageLabel") then
+					originalTransparencies[obj] = {ImageTransparency = obj.ImageTransparency, BackgroundTransparency = obj.BackgroundTransparency}
+				elseif obj:IsA("UIStroke") then
+					originalTransparencies[obj] = {Transparency = obj.Transparency}
+				elseif obj:IsA("ScrollingFrame") then
+					originalTransparencies[obj] = {ScrollBarImageTransparency = obj.ScrollBarImageTransparency, BackgroundTransparency = obj.BackgroundTransparency}
+				end
+			end
+			cacheObj(MainFrame)
+			for _, desc in ipairs(MainFrame:GetDescendants()) do cacheObj(desc) end
+			cacheObj(ExtraFrame)
+			for _, desc in ipairs(ExtraFrame:GetDescendants()) do cacheObj(desc) end
+		end
+
+		task.delay(0.1, cacheOriginalValues)
+
+		local function fadeAllTo(targetAlpha, dur, callback)
+			local tweenI = TweenInfo.new(dur, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
+			for obj, props in pairs(originalTransparencies) do
+				if obj and obj.Parent then
+					local tp = {}
+					for pn, ov in pairs(props) do
+						tp[pn] = (targetAlpha == 0) and ov or 1
+					end
+					if next(tp) then TweenService:Create(obj, tweenI, tp):Play() end
+				end
+			end
+			if callback then task.delay(dur, callback) end
+		end
+
+		local function toggleGUI()
+			if isAnimating then return end
+			isAnimating = true
+			mainVisible = not mainVisible
+			local fd = 0.3
+			if mainVisible then
+				MainFrame.Visible  = true
+				ExtraFrame.Visible = true
+				ToggleText.Text    = "HIDE"
+				TweenService:Create(tAccentBar, TWEEN_NORMAL,
+					{BackgroundColor3 = RX.Accent1}):Play()
+				fadeAllTo(0, fd, function() isAnimating = false end)
+			else
+				ToggleText.Text = "OPEN"
+				TweenService:Create(tAccentBar, TWEEN_NORMAL,
+					{BackgroundColor3 = RX.Red}):Play()
+				fadeAllTo(1, fd, function()
+					if not mainVisible then
+						MainFrame.Visible  = false
+						ExtraFrame.Visible = false
+					end
+					isAnimating = false
+				end)
+			end
+		end
+
+		ToggleFrame.MouseButton1Click:Connect(toggleGUI)
+		ToggleFrame.TouchTap:Connect(toggleGUI)
+
+		-- ── RESIZE Button ─────────────────────────────────────────────
+		local resizeButton = Instance.new("TextButton")
+		resizeButton.Position               = UDim2.new(1, -118, 0.5, 0)
+		resizeButton.AnchorPoint            = Vector2.new(0, 0.5)
+		resizeButton.Size                   = UDim2.new(0, 55, 0, 18)
+		resizeButton.BackgroundColor3       = RX.Accent1
+		resizeButton.BackgroundTransparency = 0.6
+		resizeButton.Text                   = "RESIZE"
+		resizeButton.Font                   = RX.F1
+		resizeButton.TextSize               = 9
+		resizeButton.TextColor3             = Color3.fromRGB(200, 180, 255)
+		resizeButton.AutoButtonColor        = false
+		resizeButton.BorderSizePixel        = 0
+		resizeButton.ZIndex                 = 11
+		resizeButton.Parent                 = ExtraFrame
+
+		local resizeCorner = Instance.new("UICorner")
+		resizeCorner.CornerRadius = UDim.new(0, 7)
+		resizeCorner.Parent       = resizeButton
+
+		local resizeStroke = Instance.new("UIStroke")
+		resizeStroke.Thickness       = 1
+		resizeStroke.Color           = RX.Accent2
+		resizeStroke.Transparency    = 0.5
+		resizeStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+		resizeStroke.Parent          = resizeButton
+
+		if not isMobile then
+			resizeButton.MouseEnter:Connect(function()
+				TweenService:Create(resizeButton, TWEEN_FAST,
+					{BackgroundTransparency = 0.35}):Play()
+			end)
+			resizeButton.MouseLeave:Connect(function()
+				TweenService:Create(resizeButton, TWEEN_FAST,
+					{BackgroundTransparency = 0.6}):Play()
+			end)
+		end
+
+		local resizeDebounce = false
+local function resizeHandler()
+	if resizeDebounce then return end
+	resizeDebounce = true
+
+	-- Step 1: Efek klik masuk (seperti DISCORD saat di klik)
+	TweenService:Create(resizeButton, TweenInfo.new(0.12, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+		BackgroundColor3       = Color3.fromRGB(180, 130, 255),
+		BackgroundTransparency = 0.1,
+	}):Play()
+	TweenService:Create(resizeStroke, TweenInfo.new(0.12, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+		Color        = Color3.fromRGB(200, 160, 255),
+		Transparency = 0,
+	}):Play()
+
+	-- Step 2: Tahan sebentar agar efek terlihat
+	task.delay(0.22, function()
+		if not (resizeButton and resizeButton.Parent) then return end
+
+		-- Step 3: Efek kembali normal
+		TweenService:Create(resizeButton, TweenInfo.new(0.20, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+			BackgroundColor3       = RX.Accent2,
+			BackgroundTransparency = 0.6,
+		}):Play()
+		TweenService:Create(resizeStroke, TweenInfo.new(0.20, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+			Color        = RX.Accent2,
+			Transparency = 0.5,
+		}):Play()
+
+		-- Step 4: Buka panel setelah animasi selesai
+		task.delay(0.20, function()
+			openResizeGUI({
+				MainFrame      = MainFrame,
+				ExtraFrame     = ExtraFrame,
+				ToggleFrame    = ToggleFrame,
+				updateExtraPos = updateExtraPos,
+			})
+		end)
+	end)
+
+	task.delay(1.2, function() resizeDebounce = false end)
+end
+
+		resizeButton.MouseButton1Click:Connect(resizeHandler)
+		resizeButton.TouchTap:Connect(resizeHandler)
+
+		-- ── Discord Button ────────────────────────────────────────────
+		local DISCORD_LINK = "discord.gg/RCASHh828K"
+
+		local discordButton = Instance.new("TextButton")
+		discordButton.Position               = UDim2.new(1, -58, 0.5, 0)
+		discordButton.AnchorPoint            = Vector2.new(0, 0.5)
+		discordButton.Size                   = UDim2.new(0, 55, 0, 18)
+		discordButton.BackgroundColor3       = RX.Accent1
+		discordButton.BackgroundTransparency = 0.6
+		discordButton.Text                   = "DISCORD"
+		discordButton.Font                   = RX.F1
+		discordButton.TextSize               = 9
+		discordButton.TextColor3             = Color3.fromRGB(180, 190, 255)
+		discordButton.AutoButtonColor        = false
+		discordButton.BorderSizePixel        = 0
+		discordButton.ZIndex                 = 11
+		discordButton.Parent                 = ExtraFrame
+
+		local discordCorner = Instance.new("UICorner")
+		discordCorner.CornerRadius = UDim.new(0, 7)
+		discordCorner.Parent       = discordButton
+
+	local discordStroke = Instance.new("UIStroke")
+	discordStroke.Thickness       = 1
+	discordStroke.Color           = Color3.fromRGB(240, 70, 80)
+	discordStroke.Transparency    = 0.5
+	discordStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	discordStroke.Parent          = discordButton
+
+		if not isMobile then
+			discordButton.MouseEnter:Connect(function()
+				TweenService:Create(discordButton, TWEEN_FAST,
+					{BackgroundTransparency = 0.35}):Play()
+			end)
+			discordButton.MouseLeave:Connect(function()
+				TweenService:Create(discordButton, TWEEN_FAST,
+					{BackgroundTransparency = 0.6}):Play()
+			end)
+		end
+
+		local clicking = false
+
+		local function discordHandler()
+			if clicking then return end
+			clicking = true
+			pcall(function()
+				pcall(function()
+					if setclipboard then setclipboard(DISCORD_LINK)
+					elseif toclipboard then toclipboard(DISCORD_LINK)
+					elseif Clipboard and Clipboard.set then Clipboard.set(DISCORD_LINK)
+					end
+				end)
+				discordButton.Text = "COPIED"
+				TweenService:Create(discordButton, TweenInfo.new(0.12), {
+					BackgroundColor3       = RX.Green,
+					BackgroundTransparency = 0.3,
+				}):Play()
+				pcall(function()
+					ShowNotification({
+						title    = "Discord",
+						body     = "Link undangan disalin!",
+						duration = 3,
+					})
+				end)
+				task.delay(1.5, function()
+					if discordButton and discordButton.Parent then
+						discordButton.Text = "DISCORD"
+						TweenService:Create(discordButton, TweenInfo.new(0.25), {
+							BackgroundColor3       = RX.Accent1,
+							BackgroundTransparency = 0.6,
+						}):Play()
+					end
+				end)
+			end)
+			task.delay(2, function() clicking = false end)
+		end
+
+		discordButton.MouseButton1Click:Connect(discordHandler)
+		discordButton.TouchTap:Connect(discordHandler)
+
+	end -- OnComplete
+})
